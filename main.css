@@ -1,0 +1,47 @@
+html,body{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+body{
+    margin:0;
+    background-color: #222f3e;
+    font-family: Fugaz One;
+    color:white;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+.main-page{
+    margin:5%;
+    margin-top:2%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    width:100%;
+    color:white;
+}
+header svg {
+    width:70px;
+    height: 70px;
+    fill:#ee5253;
+}
+.name{
+    font-size:23px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.name p{
+    margin-top:15px;
+}
+
