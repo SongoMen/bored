@@ -5,13 +5,17 @@ html,body{
 }
 body{
     margin:0;
-    background-color: #222f3e;
-    font-family: Fugaz One;
-    color:white;
+    background-color: #1e272e;
+    font-family: Montserrat;
+    color:#eaf5ff!important;
 }
 
 *{
-    box-sizing: border-box;
+    box-sizing: border-box!important;
+}
+
+button {
+    outline: none;
 }
 
 .main-page{
@@ -24,16 +28,15 @@ body{
 }
 header{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     height: 80px;
     width:100%;
-    color:white;
 }
 header svg {
     width:70px;
     height: 70px;
-    fill:#ee5253;
+    fill:#ff5e57;
 }
 .name{
     font-size:23px;
@@ -41,7 +44,52 @@ header svg {
     justify-content: center;
     align-items: center;
 }
-.name p{
+.name p{ 
     margin-top:15px;
+    font-weight: 900;
 }
 
+ul{
+    list-style-type: none;
+    user-select: none;
+}
+
+li{
+    display: inline-block;
+    margin:10px;
+    font-weight: 900;
+    cursor: pointer;
+}
+li:first-child{
+    transition: all .5s;
+}
+li:first-child:hover{
+    color: #ff5e57;
+    text-shadow: 0px 0px 21px rgb(255,94,87,.2); 
+    transform: scale(1.1);
+}
+.menu__button {
+    border:0;
+    padding:10px 20px;
+    font-weight: 900;
+    border-radius: 5px;
+    color:#eaf5ff!important;
+    transition: all .5s;
+}
+.login{
+    background-color:#ff5e57;
+    box-shadow: #ff5e57 0px 0rem 1.5rem 0px;
+}
+.register{
+    border: 1px solid #ff5e57;
+    background:none;
+    box-shadow: #222f3e 0px 0.4rem 1.5rem 0px;
+}
+.login:hover{
+
+    box-shadow: #222f3e 0px 0.4rem 1.5rem 0px;
+}
+.register:hover{
+    background-color:#ff5e57;
+    box-shadow: #131b23 0px 0.4rem 1.5rem 0px;
+}
