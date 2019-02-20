@@ -32,6 +32,7 @@ header{
     align-items: center;
     height: 80px;
     width:100%;
+    user-select: none;
 }
 header svg {
     width:70px;
@@ -59,14 +60,12 @@ li{
     margin:10px;
     font-weight: 900;
     cursor: pointer;
-}
-li:first-child{
     transition: all .5s;
 }
-li:first-child:hover{
+li:nth-child(1):hover, li:nth-child(2):hover{
     color: #ff5e57;
     text-shadow: 0px 0px 21px rgb(255,94,87,.2); 
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 .menu__button {
     border:0;
@@ -75,6 +74,7 @@ li:first-child:hover{
     border-radius: 5px;
     color:#eaf5ff!important;
     transition: all .5s;
+    cursor:pointer;
 }
 .login{
     background-color:#ff5e57;

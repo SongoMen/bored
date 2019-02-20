@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Bored – Main Page</title>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Bored ?</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
-    <script src="main.js"></script>
+    <link rel="icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:500,500i,900,900i" rel="stylesheet">
+
+    <script src="https://www.gstatic.com/firebasejs/5.8.3/firebase.js"></script>
+    <script src="config.js"></script>
+    <script src="main.js"></script>
 </head>
 <body>
     <section class="main-page">
@@ -18,9 +24,10 @@
             </div>
             <div class="menu">
                 <ul>
+                    <li>HOME</li>
                     <li>ABOUT</li>
                     <li><button class="menu__button login">LOGIN</button></li>
-                    <li><button class="menu__button register">REGISTER</button></li>
+                    <li><a href="register.html"><button class="menu__button register">REGISTER</button></a></li>
                 </ul>
             </div>
         </header>
