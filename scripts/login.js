@@ -6,7 +6,7 @@ function login(){
 
     firebaseAuth().signInWithEmailAndPassword(email, password)
     .then(()=>{
-        window.location.href="panel"
+        window.location.href="panel.html"
     })
     .catch((error)=>{
         document.getElementById("errorMsg").innerHTML = "Wrong email or password"
@@ -14,3 +14,11 @@ function login(){
 }
 
 document.getElementById("submit").addEventListener('click',login)
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        window.location.href="panel.html"
+    } else {
+      // No user is signed in.
+    }
+});

@@ -3,6 +3,14 @@ const firebaseAuth = firebase.auth
 
 document.getElementById("submit").addEventListener('click', sendInfo)
 
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        window.location.href="panel.html"
+    } else {
+      // No user is signed in.
+    }
+});
+
 function sendInfo(){
     let username = document.getElementById("username").value;
     let email = document.getElementById("email").value;
@@ -20,7 +28,14 @@ function sendInfo(){
         }
         else{
             firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(()=>{
+                .then(()=>{
+                    user = firebase.auth().currentUser;
+                        user.updateProfile({
+                            displayName: username
+                        })
+                    .catch(function(error) {
+                        console.log(error)
+                    });
                     ref.child(`users/${username}/info`)
                     .set({
                       username:username,
@@ -31,13 +46,13 @@ function sendInfo(){
                     document.getElementById("errorMsg").innerHTML = "Register successful"
                     document.getElementById("succesMsg").style.display="block"
                 })
-            .catch(function(error) {
-                let errorMessage = error.message;
-                console.log(errorMessage)
-                document.getElementById("errorMsg").style.color="white"
-                document.getElementById("errorMsg").innerHTML = errorMessage
-                document.getElementById("succesMsg").style.display="none"
-            })
+                .catch(function(error) {
+                    let errorMessage = error.message;
+                    console.log(errorMessage)
+                    document.getElementById("errorMsg").style.color="white"
+                    document.getElementById("errorMsg").innerHTML = errorMessage
+                    document.getElementById("succesMsg").style.display="none"
+                })
         }
     });
 }

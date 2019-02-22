@@ -58,19 +58,19 @@ header{
     font-weight: 900;
 }
 
-ul{
+header ul{
     list-style-type: none;
     user-select: none;
 }
 
-li{
+header li{
     display: inline-block;
     margin:10px;
     font-weight: 900;
     cursor: pointer;
     transition: all .5s;
 }
-li:nth-child(1):hover, li:nth-child(2):hover{
+header li:nth-child(1):hover, header li:nth-child(2):hover{
     color: #ff5e57;
     text-shadow: 0px 0px 21px rgb(255,94,87,.2); 
     transform: scale(1.05);
@@ -162,3 +162,63 @@ input[type=text], input[type=password] {
   input[type=text]:focus,input[type=password]:focus {
     border-bottom: 2px solid #ff5e57;
   }
+
+.topbar{
+    height: 50px;
+    width:96%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding:2% 3%;
+    background-color: #131b23
+}
+.leftbar{
+    height: 100%;
+    width:4%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #131b23;
+    padding:1%;
+}
+.leftbar a svg{
+    width:60px;
+    height: 60px;
+    fill:#ff5e57;
+}
+
+.leftbar svg{
+    width:30px;
+    height: 30px;
+    fill:white;
+    cursor: pointer;
+    transition: .5s all;
+}
+
+.leftbar__bookmarks ul{
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 0;
+}
+.leftbar__bookmarks ul li{
+    margin:10px;
+}
+
+.leftbar__settings{
+    width:30px!important;
+    height: 30px!important;
+    fill:#ff5e57!important;
+}
+
+.leftbar svg:hover{
+    fill:#ff5e57;
+}
+
+.leftbar__settings:hover{
+    fill:white!important;
+}
+.active{
+    fill:#ff5e57;
+}
