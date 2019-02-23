@@ -12,7 +12,6 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 var format = /[\.@#$\[\]]/;
-alert(format.test("dsadsa."))
 
 function sendInfo(){
     let username = document.getElementById("username").value;
