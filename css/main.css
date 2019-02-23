@@ -5,7 +5,7 @@ html,body{
 }
 body{
     margin:0;
-    background-color: #1e272e;
+    background: linear-gradient(135deg, #322e38 0%,#16161d 100%);
     font-family: Montserrat;
     color:#eaf5ff!important;
 }
@@ -25,6 +25,58 @@ a{
     text-decoration: none;
     color:white;
 }
+
+/* ####################################################################### PRELOADER ######################################################################### */
+
+.preloader{
+    position: absolute;
+    width:100%;
+    height: 100%;
+    background: linear-gradient(135deg, #322e38 0%,#16161d 100%);
+}
+
+.loading-data {
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+  }
+  
+  .three-bounce {
+    font-size: 0;
+  }
+  
+  .three-bounce div {
+    width: 15px;
+    height: 15px;
+    background-color: #ff5e57;
+    display: inline-block;
+    animation: threeBounceDelay 1.4s infinite ease-in-out;
+    animation-fill-mode: both;
+    margin: 0 1px;
+  }
+  
+  .three-bounce .bounce1 {
+    animation-delay: -0.32s;
+  }
+  
+  .three-bounce .bounce2 {
+    animation-delay: -0.16s;
+  }
+  
+  @keyframes threeBounceDelay {
+    0%,
+    80%,
+    100% {
+      transform: scale(0);
+    }
+    40% {
+      transform: scale(.75);
+    }
+  }
+
+/* ####################################################################### MAIN PAGE ######################################################################### */
+
 
 .main-page{
     margin:5%;
@@ -102,20 +154,20 @@ header li:nth-child(1):hover, header li:nth-child(2):hover{
     box-shadow: #131b23 0px 0.4rem 1.5rem 0px;
 }
 
-/* REGISTER */
+/* ####################################################################### REGISTER ######################################################################### */
 
 
-.container__register{
+.container__register, .container__login{
     height: 100%;
 }
 
-.container__register, form{
+.container__register, form,.container__login{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
-.header__register{
+.header__register,.header__login{
     position: absolute;
     margin:5%;
     margin-top:2%;
@@ -123,7 +175,7 @@ header li:nth-child(1):hover, header li:nth-child(2):hover{
 }
 input {
     font-family: Montserrat!important;
-    margin-bottom: 10px;
+    margin-bottom:15px;
 }
 
 input[type=button], input[type=submit],button[type=button] {
@@ -147,78 +199,153 @@ input[type=button]:hover, input[type=submit]:hover,button[type=button]:hover{
     background-color:#e6554d;
 }
 input[type=text], input[type=password] {
-    background-color: #29353e;
+    background-color: #1f1e20;
     border: none;
-    color: white;
+    color: #7d7b90;
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    border: 2px solid #1e272e;
+    border: 2px solid rgb(255,94,87,0);
     transition: all 0.5s ease-in-out;
     border-radius: 5px 5px 5px 5px;
   }
-  input[type=text]:focus,input[type=password]:focus {
+input[type=text]:focus,input[type=password]:focus {
     border-bottom: 2px solid #ff5e57;
-  }
-
-.topbar{
-    height: 50px;
-    width:96%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding:2% 3%;
-    background-color: #131b23
 }
+
+ /* ####################################################################### PANEL ######################################################################### */
+
+
 .leftbar{
-    height: 100%;
-    width:4%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: space-between;
-    background-color: #131b23;
-    padding:1%;
+    align-items: flex-start;
+    width:13%;
+    height: 100%;
+    padding:2%;
+    flex-direction: column;
+    color:#7d7b90;
+    text-transform: uppercase;
 }
 .leftbar a svg{
-    width:60px;
-    height: 60px;
-    fill:#ff5e57;
+    width:50px;
+    height: 50px;
+    margin-left:-10px;
 }
 
-.leftbar svg{
-    width:30px;
-    height: 30px;
-    fill:white;
-    cursor: pointer;
-    transition: .5s all;
+.leftbar__menu{
+    margin-bottom:200px;
 }
 
-.leftbar__bookmarks ul{
-    display: flex;
-    flex-direction: column;
+.leftbar ul {
     list-style-type: none;
     padding: 0;
 }
-.leftbar__bookmarks ul li{
-    margin:10px;
+
+.leftbar li {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    cursor: pointer;
+    transition: all;
+    fill: #7d7b90;
+    transition: .6s all;
 }
 
-.leftbar__settings{
-    width:30px!important;
-    height: 30px!important;
-    fill:#ff5e57!important;
-}
-
-.leftbar svg:hover{
-    fill:#ff5e57;
-}
-
-.leftbar__settings:hover{
+.leftbar li:hover{
+    color:white!important;
     fill:white!important;
 }
-.active{
+
+.leftbar li svg {
+    width:25px;
+    height: 25px;
+    margin-right: 30px;
+}
+
+.active, .active svg{
+    color:white!important;
+    fill:white!important;
+}
+
+.leftbar__user{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.leftbar__user svg{
+    width:20px;
+    height: 20px;
+    fill:#7d7b90;
+    cursor:pointer;
+    transition: .5s all;
+}
+.leftbar__user svg:hover{
     fill:#ff5e57;
+}
+
+.leftbar__username{
+    font-weight: 900;
+}
+
+.topbar{
+    width:100%;
+    height: 7%;
+    display: flex;
+    justify-content: flex-end;
+    
+}
+
+.topbar__add{
+    width:60px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#ff5e57;
+    fill:white;
+    cursor: pointer;
+    transition: .5s all;
+    border-bottom-left-radius: 5px;
+}
+
+.topbar__add svg{
+    width:20px;
+    height: 20px;
+}
+
+.topbar__add:hover{
+    background-color:white;
+    fill:#ff5e57
+}
+
+
+/*#3e4653*/
+
+.dashboard{
+    width:100%;
+    height:100%;
+    display: flex;
+    justify-content: flex-start;
+    padding:100px;
+}
+
+.dashboard__test{
+    width:43%;
+    height: 36%;
+    background-color: rgba(27, 27, 36, 0.637);
+    display: flex;
+    align-items: flex-end
+}
+
+.dashboard__info{
+    width:100%;
+    height: 40%;
+    background-color:rgb(44, 36, 36);
 }

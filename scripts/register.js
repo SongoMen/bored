@@ -5,11 +5,14 @@ document.getElementById("submit").addEventListener('click', sendInfo)
 
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-        window.location.href="panel.html"
-    } else {
-      // No user is signed in.
+        setTimeout(() => {
+            window.location.href="panel.html"
+        }, 1000);
     }
 });
+
+var format = /[\.@#$\[\]]/;
+alert(format.test("dsadsa."))
 
 function sendInfo(){
     let username = document.getElementById("username").value;
@@ -17,10 +20,13 @@ function sendInfo(){
     let password = document.getElementById("password").value;
 
     ref.child(`users/${username}`).once("value",snapshot => {
-        if (snapshot.exists() || username.length<3){
+        if (snapshot.exists() || username.length<3 || format.test(username) == true){
             document.getElementById("errorMsg").style.color="white"
             if(username.length<3){
                 document.getElementById("errorMsg").innerHTML = "Username need to have at least 3 characters"
+            }
+            else if(format.test(username) === true){
+                document.getElementById("errorMsg").innerHTML = "Username can't contain special characters"
             }
             else{
                 document.getElementById("errorMsg").innerHTML = "Username already exists"
@@ -44,11 +50,9 @@ function sendInfo(){
                     })
                     document.getElementById("errorMsg").style.color="green"
                     document.getElementById("errorMsg").innerHTML = "Register successful"
-                    document.getElementById("succesMsg").style.display="block"
                 })
                 .catch(function(error) {
                     let errorMessage = error.message;
-                    console.log(errorMessage)
                     document.getElementById("errorMsg").style.color="white"
                     document.getElementById("errorMsg").innerHTML = errorMessage
                     document.getElementById("succesMsg").style.display="none"
