@@ -32,6 +32,7 @@ a{
     position: absolute;
     width:100%;
     height: 100%;
+    z-index: 20;
     background: linear-gradient(135deg, #322e38 0%,#16161d 100%);
 }
 
@@ -227,6 +228,7 @@ input[type=text]:focus,input[type=password]:focus {
     padding:2%;
     flex-direction: column;
     color:#7d7b90;
+    user-select: none;
     text-transform: uppercase;
 }
 .leftbar a svg{
@@ -337,15 +339,57 @@ input[type=text]:focus,input[type=password]:focus {
 }
 
 .dashboard__test{
-    width:43%;
+    width:35%;
     height: 36%;
     background-color: rgba(27, 27, 36, 0.637);
     display: flex;
-    align-items: flex-end
+    align-items: flex-end;
+    flex-direction:column;
+    user-select: none;
+}
+
+.dashboard__type{
+    width:50px;
+    height: 50px;
+    margin-top:0;
+    fill:#ff5e57;
+    padding:10px;
 }
 
 .dashboard__info{
     width:100%;
     height: 40%;
-    background-color:rgb(44, 36, 36);
+    background-color:#ff5e57;
+    padding:20px;
+    margin-top:auto;
 }
+.dashboard__info svg{
+    width: 20px;
+    height: 20px;
+    fill:white;
+    margin-right:10px;
+}
+.dashboard__time{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+.dashboard__hour,.dashboard__date{
+    display: flex;
+    align-items: center;
+}
+
+ /* ####################################################################### NEW EVENT ######################################################################### */
+
+ .newEvent{
+     display: none;
+     width:50%;
+     height: 60%;
+     background-color:black;
+     position: absolute;
+     top: 50%; 
+     left: 50%;
+ 
+     transform: translate(-50%, -50%);
+ }

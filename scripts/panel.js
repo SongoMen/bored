@@ -1,5 +1,3 @@
-
-
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         setTimeout(() => {
@@ -9,7 +7,6 @@ firebase.auth().onAuthStateChanged(function(user) {
         }, 1000);
     }
   });
-
 document.getElementById("leftbar__logout").addEventListener('click', logOut)
 
 function logOut(){
@@ -18,4 +15,15 @@ function logOut(){
       }, function(error) {
         console.log(error)
       });
+}
+
+document.getElementById("topbar__add").addEventListener('click',newEvent)
+
+function newEvent(){
+  if(document.getElementById("newEvent").style.display === "none"){
+    document.getElementById("newEvent").style.display="flex"
+  }
+  else{
+    document.getElementById("newEvent").style.display="none"
+  }
 }
