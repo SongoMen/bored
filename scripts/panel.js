@@ -20,10 +20,14 @@ function logOut(){
 document.getElementById("topbar__add").addEventListener('click',newEvent)
 
 function newEvent(){
-  if(document.getElementById("newEvent").style.display === "none"){
-    document.getElementById("newEvent").style.display="flex"
-  }
-  else{
+  if(document.getElementById("newEvent").style.display === "flex"){
     document.getElementById("newEvent").style.display="none"
   }
+  else{
+    document.getElementById("newEvent").style.display="flex"
+  }
 }
+
+  $('#newEvent__hours').inputmask("hh:mm");
+  $('#newEvent__date').inputmask({alias:"date"});
+  

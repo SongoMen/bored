@@ -14,6 +14,8 @@
 
     <script src="https://www.gstatic.com/firebasejs/5.8.3/firebase.js"></script>
     <script src="scripts/config.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
 </head>
 
 <body style="display: flex;flex-direction: row;">
@@ -135,7 +137,16 @@
         </div>
     </div>
     <div id="newEvent" class="newEvent">
-
+        <div class="newEvent__name">
+            <label for="eventName">Event Name</label>
+            <input type="text" name="eventName">
+        </div>
+        <div class="newEvent__time">
+            <label for="date">Date</label>
+            <input type="text" id="newEvent__date" name="date" placeholder="dd/mm/yyyy">
+            <label for="time">Time</label>
+            <input type="text" id="newEvent__hours" name="time" placeholder="hh:mm">
+        </div>
     </div>
     <div style="display:flex;flex-direction:column;width:87%;height:100%;">
         <div class="topbar">
@@ -417,8 +428,6 @@
             </div>
         </div>
     </div>
-
-
     <script src="scripts/panel.js"></script>
 </body>
 

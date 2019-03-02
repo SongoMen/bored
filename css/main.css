@@ -346,6 +346,7 @@ input[type=text]:focus,input[type=password]:focus {
     align-items: flex-end;
     flex-direction:column;
     user-select: none;
+    box-shadow: #03030336 0px 0px 20px 5px;
 }
 
 .dashboard__type{
@@ -384,12 +385,39 @@ input[type=text]:focus,input[type=password]:focus {
 
  .newEvent{
      display: none;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
      width:50%;
      height: 60%;
-     background-color:black;
+     background-color:#16161d;
+     border:solid 1px #ff5e57;
+     border-radius: 10px;
      position: absolute;
      top: 50%; 
      left: 50%;
- 
      transform: translate(-50%, -50%);
  }
+
+.newEvent input{
+    height: auto;
+}
+
+.newEvent input[type="text"], .newEvent input[type="password"] {
+    width: 350px;
+    padding: 10px 0px;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #435160;
+    outline: none;
+    color: #6D7781;
+    font-size: 16px;
+    margin-bottom: 50px;
+    border-radius: 0;
+}
+  
+label{
+    display: block;
+    color:#7d7b90;
+    margin-bottom: -10px;
+}
