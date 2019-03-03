@@ -27,7 +27,9 @@ function newEvent(){
     document.getElementById("newEvent").style.display="flex"
   }
 }
+document.getElementById("leftbar__settings").addEventListener('click',function(){
+  window.location.href="settings.html"
+})
 
   $('#newEvent__hours').inputmask("hh:mm");
   $('#newEvent__date').inputmask({alias:"date"});
-  
