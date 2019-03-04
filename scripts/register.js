@@ -9,6 +9,9 @@ firebase.auth().onAuthStateChanged(function(user) {
             window.location.href="panel.html"
         }, 1000);
     }
+    else{
+    document.getElementById("preloader").style.display="none";
+    }
 });
 
 var format = /[\.@#$\[\]]/;
