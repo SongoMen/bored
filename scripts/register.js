@@ -9,6 +9,9 @@ firebase.auth().onAuthStateChanged(function(user) {
             window.location.href="panel.html"
         }, 1000);
     }
+    else{
+    document.getElementById("preloader").style.display="none";
+    }
 });
 
 var format = /[\.@#$\[\]]/;
@@ -45,7 +48,7 @@ function sendInfo(){
                     .set({
                       username:username,
                       email,email,
-                      password:password,
+                      password:password
                     })
                     document.getElementById("errorMsg").style.color="green"
                     document.getElementById("errorMsg").innerHTML = "Register successful"

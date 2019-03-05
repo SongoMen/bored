@@ -139,7 +139,7 @@
     <div id="newEvent" class="newEvent">
         <div class="newEvent__name">
             <label for="eventName">Event Name</label>
-            <input type="text" name="eventName">
+            <input id="newEvent__nameInput" type="text" name="eventName">
         </div>
         <div class="newEvent__time">
             <label for="date">Date</label>
@@ -147,6 +147,7 @@
             <label for="time">Time</label>
             <input type="text" id="newEvent__hours" name="time" placeholder="hh:mm">
         </div>
+		<button id="newEvent__submit"></button>
     </div>
     <div style="display:flex;flex-direction:column;width:87%;height:100%;">
         <div class="topbar">
@@ -158,10 +159,9 @@
                 </svg>
             </div>
         </div>
-        <div class="dashboard">
-            <div class="dashboard__test">
-
-                <svg class="dashboard__type" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+        <div class="dashboard" id="dashboard">
+            <div class="dashboard__event">
+				<svg class="dashboard__type" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512.002 512.002"
                     style="enable-background:new 0 0 512.002 512.002;" xml:space="preserve">
                     <g>
@@ -299,7 +299,7 @@
                            " />
                         </g>
                     </g>
-                </svg>
+               </svg>
                 <div class="dashboard__info">
                     <div class="dashboard__time">
                         <div class="dashboard__date">

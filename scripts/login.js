@@ -19,6 +19,6 @@ firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         window.location.href="panel.html"
     } else {
-      // No user is signed in.
+      document.getElementById("preloader").style.display="none";
     }
 });
