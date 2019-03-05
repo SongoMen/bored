@@ -2,7 +2,7 @@ html,body{
     height: 100%;
     display: flex;
     flex-direction: column;
-		overflow:hidden;
+    overflow:hidden;
 }
 body{
     margin:0;
@@ -27,13 +27,32 @@ a{
     color:white;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #1d1d1d; 
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(77, 77, 77); 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(48, 48, 48); 
+  }
+
 /* ####################################################################### PRELOADER ######################################################################### */
 
 .preloader{
     position: absolute;
     width:100%;
     height: 100%;
-    z-index: 20;
+    z-index: 90;
     background: linear-gradient(135deg, #322e38 0%,#16161d 100%);
 }
 
@@ -191,6 +210,7 @@ input[type=button], input[type=submit],button[type=button] {
     display: inline-block;
     text-transform: uppercase;
     font-size: 13px;
+    font-family:Montserrat;
     box-shadow: 0 10px 30px 0 rgba(255,94,87,04);
     border-radius: 5px 5px 5px 5px;
     margin: 25px 20px 40px 20px;
@@ -224,7 +244,7 @@ input[type=text]:focus,input[type=password]:focus {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    width:13%;
+    width:14%;
     height: 100%;
     padding:2%;
     flex-direction: column;
@@ -316,6 +336,7 @@ input[type=text]:focus,input[type=password]:focus {
     cursor: pointer;
     transition: .5s all;
     border-bottom-left-radius: 5px;
+    z-index: 20;
 }
 
 .topbar__add svg{
@@ -353,6 +374,15 @@ input[type=text]:focus,input[type=password]:focus {
 	margin:30px;
 }
 
+.dashboard__eventName{
+    margin-right:auto;
+    margin-bottom: 0;
+    margin-left:10px;
+    font-size:20px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
 .dashboard__type{
     width:50px;
     height: 50px;
@@ -385,22 +415,49 @@ input[type=text]:focus,input[type=password]:focus {
     align-items: center;
 }
 
+.dashboard__noEvents{
+    background-color:#17171f;
+    padding:50px;
+    margin:auto;
+}
+
  /* ####################################################################### NEW EVENT ######################################################################### */
+
+
+.bg{
+    position: absolute;
+    width:100%;
+    height: 100%;
+    background-color:black;
+    opacity: 0;
+    display: none;
+    transition: all .5s;
+}
 
  .newEvent{
      display: none;
      justify-content: center;
      align-items: center;
      flex-direction: column;
-     width:50%;
-     height: 60%;
+     width:55%;
+     height: 70%;
      background-color:#16161d;
-     border:solid 1px #ff5e57;
      border-radius: 10px;
      position: absolute;
      top: 50%; 
      left: 50%;
      transform: translate(-50%, -50%);
+     z-index: 10;
+     opacity: 0;
+    transition: all .5s;
+ }
+
+ .newEvent__form{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+     margin-top:auto;
  }
 
 .newEvent input{
@@ -419,9 +476,41 @@ input[type=text]:focus,input[type=password]:focus {
     margin-bottom: 50px;
     border-radius: 0;
 }
+
+.newEvent__submit{
+    margin-top:0!important;
+}
+
+.newEvent__footer{
+    margin-top:auto;
+}
   
+#newEvent__cancel{
+    background-color: rgb(142, 155, 168);
+    box-shadow: 0 0px 0px 0 rgb(142, 155, 168);
+    margin-top:10px;
+}
+
+#newEvent__cancel:hover{
+    box-shadow: 0 0 30px 0 rgb(142, 155, 168);
+}
+
 label{
     display: block;
     color:#7d7b90;
-    margin-bottom: -10px;
+    margin-bottom: -5px;
+}
+#slct{
+    position: relative;
+    display: block;
+    width: 20em;
+    height: 3em;
+    line-height: 3;
+    background: #393841;
+    overflow: hidden;
+    border-radius: .25em;
+    color:white;
+    border:none;
+    font-family:Montserrat;
+    text-transform: uppercase;
 }
