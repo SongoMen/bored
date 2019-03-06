@@ -41,6 +41,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 });
 
 function refreshPanel() {
+	document.getElementById("dashboard").innerHTML="";
 	var user = firebase.auth().currentUser.displayName;
 	let eventNumber = 0;
 	ref.child(`users/${user}/events`).once("value")
