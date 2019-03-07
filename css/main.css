@@ -27,6 +27,10 @@ a{
     color:white;
 }
 
+h3 {
+	font-size: calc(9px + (15 - 9) * ((100vw - 350px) / (1920 - 350)));
+}
+
 ::-webkit-scrollbar {
     width: 10px;
   }
@@ -272,7 +276,7 @@ input[type=text]:focus,input[type=password]:focus {
     align-items: center;
     font-size: 12px;
     font-weight: 700;
-    margin-bottom: 40px;
+    margin-bottom: 25px;
     cursor: pointer;
     transition: all;
     fill: #7d7b90;
@@ -357,21 +361,23 @@ input[type=text]:focus,input[type=password]:focus {
     height:100%;
     display: flex;
     justify-content: flex-start;
-    padding:50px;
+    padding:20px;
 	flex-wrap:wrap;
 	overflow:auto;
 }
 
 .dashboard__event{
-    width:35%;
-    height: 36%;
+    width:28%;
+    height: 25vh;
+    min-width: 350px;
     background-color: rgba(27, 27, 36, 0.637);
     display: flex;
     align-items: flex-end;
     flex-direction:column;
     user-select: none;
     box-shadow: #03030336 0px 0px 20px 5px;
-	margin:30px;
+    margin:30px;
+    flex-wrap: wrap;
 }
 
 .dashboard__eventName{
@@ -513,4 +519,46 @@ label{
     border:none;
     font-family:Montserrat;
     text-transform: uppercase;
+}
+
+@media only screen and (max-width: 1180px) {
+    .dashboard{
+        justify-content: center;
+        align-items: center;
+    }
+    .newEvent__footer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    button[type=button]{
+        padding: 10px 50px;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .leftbar{
+        display: none;
+    }
+    .panel{
+        width:100%!important;
+    }
+}
+@media only screen and (max-width: 920px) {
+
+    .newEvent{
+        width:90%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .leftbar{
+        display: none;
+    }
+    .panel{
+        width:100%!important;
+    }
+    .dashboard__event{
+        min-width: 300px;
+    }
 }
