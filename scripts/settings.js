@@ -4,7 +4,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 		document.getElementById("leftbar__username").innerHTML = user
 		setTimeout(() => {
 			document.getElementById("preloader").style.display = "none";
-		}, 2000);
+		}, 1000);
 	}
 	else{
 		window.location.href="login.html"

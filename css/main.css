@@ -6,9 +6,10 @@ html,body{
 }
 body{
     margin:0;
-    background: linear-gradient(135deg, #322e38 0%,#16161d 100%);
+    background: linear-gradient(135deg, #29252e 0%,#16161d 100%);
     font-family: Montserrat;
     color:#eaf5ff!important;
+    flex-direction: row;
 }
 
 *{
@@ -27,8 +28,23 @@ a{
     color:white;
 }
 
+
+h1 {
+    font-size: calc(50px + (90 - 50) * ((100vw - 350px) / (1920 - 350)));
+}
+
+h2 {
+    font-size: calc(25px + (35 - 25) * ((100vw - 350px) / (1920 - 350)));
+}
+
 h3 {
-	font-size: calc(9px + (15 - 9) * ((100vw - 350px) / (1920 - 350)));
+    font-size: calc(9px + (15 - 9) * ((100vw - 350px) / (1920 - 350)));
+    margin: 10px 0;
+}
+
+h5{
+    font-weight: 500;
+    margin: 0;
 }
 
 ::-webkit-scrollbar {
@@ -57,7 +73,7 @@ h3 {
     width:100%;
     height: 100%;
     z-index: 90;
-    background: linear-gradient(135deg, #322e38 0%,#16161d 100%);
+    background: linear-gradient(135deg, #29252e 0%,#16161d 100%);
 }
 
 .loading-data {
@@ -105,6 +121,7 @@ h3 {
 
 .main-page{
     margin:5%;
+    width:100%;
     margin-top:2%;
     height: 90%;
     display: flex;
@@ -184,6 +201,7 @@ header li:nth-child(1):hover, header li:nth-child(2):hover{
 
 .container__register, .container__login{
     height: 100%;
+    width:100%;
 }
 
 .container__register, form,.container__login{
@@ -225,7 +243,7 @@ input[type=button]:hover, input[type=submit]:hover,button[type=button]:hover{
     background-color:#e6554d;
 }
 input[type=text], input[type=password] {
-    background-color: #1f1e20;
+    background-color: #141314;
     border: none;
     color: #7d7b90;
     padding: 10px 20px;
@@ -440,7 +458,7 @@ input[type=text]:focus,input[type=password]:focus {
     transition: all .5s;
 }
 
- .newEvent{
+ .newEvent, .popup{
      display: none;
      justify-content: center;
      align-items: center;
@@ -470,7 +488,7 @@ input[type=text]:focus,input[type=password]:focus {
     height: auto;
 }
 
-.newEvent input[type="text"], .newEvent input[type="password"] {
+.newEvent input[type="text"], .newEvent input[type="password"], .friends__addFriends input {
     width: 350px;
     padding: 10px 0px;
     background: transparent;
@@ -521,6 +539,121 @@ label{
     text-transform: uppercase;
 }
 
+/* ####################################################################### PROFILE PAGE ######################################################################### */
+
+.profile{
+    height: 100%;
+    width:86%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding:100px;  
+    padding-bottom: 300px;
+}
+
+.profile h4{
+    font-weight: 500;
+}
+
+.profile__username{
+    color:#7d7b90;
+    text-transform: uppercase;
+}
+
+/* ####################################################################### FRIENDS PAGE ######################################################################### */
+
+.friends{
+    height: 100%;
+    width:86%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.friends__heading{
+    color:#7d7b90;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.friends__heading h2{
+    margin:0;
+}
+
+.friends__heading button{
+    display: flex;
+    font-weight: 700;
+    box-shadow: none;
+    font-size: 9px;
+    padding: 10px 20px;
+}
+
+.friends__heading button svg{
+    width:9px;
+    height: 9px;
+    fill:white;
+    margin-right: 10px;
+}
+
+.friends__searchBar{
+    margin-bottom: 0!important;
+}
+
+.friends__list{
+    width:100%;
+    padding:50px;
+    height: 85%;
+}
+
+.friends__user{
+    width:200px;
+    background-color:#1a1a25;
+    padding:10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 5px;
+    margin:15px;
+    height: 130px;
+}
+
+.friends__fullList svg{
+    width:20px;
+    height: 20px;
+    fill:white;
+    margin-right: 10px;
+}
+
+.friends__list svg{
+    width:10px;
+    height: 10px;
+    fill:white;
+    margin-right: 10px;
+}
+
+.friends__list button, .friends__fullList button{
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    box-shadow: none;
+    font-size: 11px;
+    padding: 8px 20px;
+    white-space: nowrap;
+    margin-bottom:10px;
+    margin-top:10px;
+}
+
+.friends__fullList{
+    display: flex;
+    flex-wrap: wrap;
+    width:100%;
+    padding:70px;
+    height: 60%;
+}
+
+/* ####################################################################### MEDIA ######################################################################### */
+
 @media only screen and (max-width: 1180px) {
     .dashboard{
         justify-content: center;
@@ -545,8 +678,7 @@ label{
     }
 }
 @media only screen and (max-width: 920px) {
-
-    .newEvent{
+    .newEvent, .popup{
         width:90%;
     }
 }
@@ -562,3 +694,4 @@ label{
         min-width: 300px;
     }
 }
+

@@ -15,7 +15,6 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 var format = /[\.@#$\[\]]/;
-
 function sendInfo(){
     let username = document.getElementById("username").value;
     let email = document.getElementById("email").value;
@@ -44,11 +43,26 @@ function sendInfo(){
                     .catch(function(error) {
                         console.log(error)
                     });
+                    let today = new Date();
+                    let dd = today.getDate();
+                    let mm = today.getMonth() + 1; //January is 0!
+                    let yyyy = today.getFullYear();
+                
+                    if (dd < 10) {
+                    dd = '0' + dd;
+                    }
+                
+                    if (mm < 10) {
+                    mm = '0' + mm;
+                    }
+                
+                    today = dd + '/' + mm + '/' + yyyy;
                     ref.child(`users/${username}/info`)
                     .set({
                       username:username,
                       email,email,
-                      password:password
+                      password:password,
+                      createdDate: today
                     })
                     document.getElementById("errorMsg").style.color="green"
                     document.getElementById("errorMsg").innerHTML = "Register successful"

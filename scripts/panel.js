@@ -3,9 +3,6 @@ const ref = firebase.database().ref();
 document.getElementById("newEvent__submit").addEventListener("click", createEvent)
 document.getElementById("topbar__add").addEventListener('click', newEvent)
 document.getElementById("leftbar__logout").addEventListener('click', logOut)
-document.getElementById("leftbar__settings").addEventListener('click', function () {
-	window.location.href = "settings.html"
-})
 document.getElementById("newEvent__cancel").addEventListener('click',function(){
 	document.getElementById("newEvent").style.opacity = "0"
 	document.getElementById("bg").style.opacity = "0"
@@ -15,24 +12,21 @@ document.getElementById("newEvent__cancel").addEventListener('click',function(){
 	}, 500);
 })
 
-
 $('#newEvent__hours').inputmask("hh:mm");
 $('#newEvent__date').inputmask({
 	alias: "date",
 	"placeholder": "__/__/____"
 });
-
-
 firebase.auth().onAuthStateChanged(function (user) {
 	if (user) {
 		var user = firebase.auth().currentUser.displayName;
 		document.getElementById("leftbar__username").innerHTML = user
 		setTimeout(() => {
 			document.getElementById("preloader").style.display = "none";
-		}, 2000);
+		}, 1000);
 		setTimeout(() => {
 			refreshPanel();
-		}, 1500);
+		}, 800);
 	}
 	else{
 		window.location.href="login.html"
@@ -41,8 +35,19 @@ firebase.auth().onAuthStateChanged(function (user) {
 });
 
 function refreshPanel() {
-	document.getElementById("dashboard").innerHTML="";
 	var user = firebase.auth().currentUser.displayName;
+	let currentdate = new Date();
+	let datetime = currentdate.getDay() + "/"+currentdate.getMonth() 
+	+ "/" + currentdate.getFullYear() + " @ " 
+	+ currentdate.getHours() + ":" 
+	+ currentdate.getMinutes() + ":" + currentdate.getSeconds();
+
+	ref.child(`users/${user}/info`)
+	.update({
+		lastOnline: datetime
+	})
+
+	document.getElementById("dashboard").innerHTML="";
 	let eventNumber = 0;
 	ref.child(`users/${user}/events`).once("value")
 		.then(function (snapshot) {
