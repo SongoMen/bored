@@ -1,12 +1,23 @@
 const ref = firebase.database().ref();
+var popup = document.getElementById("popup");
+var bg = document.getElementById("bg")
+
+function logOut() {
+	firebase.auth().signOut().then(function () {
+		window.location.href = "login.html"
+	}, function (error) {
+		console.log(error)
+	});
+}
+document.getElementById("leftbar__logout").addEventListener('click', logOut)
 
 firebase.auth().onAuthStateChanged(function (user) {
 	if (user) {
 		var user = firebase.auth().currentUser.displayName;
 		document.getElementById("leftbar__username").innerHTML = user
+		getFriends();
 		setTimeout(() => {
 			document.getElementById("preloader").style.display = "none";
-			getFriends();
 		}, 1000);
 	}
 	else {
@@ -14,9 +25,15 @@ firebase.auth().onAuthStateChanged(function (user) {
 	}
 });
 
+document.getElementById("popup__cancel").addEventListener("click",function(){
+		popup.style.opacity = "0"
+		bg.style.opacity = "0"
+		setTimeout(() => {
+			popup.style.display = "none"
+			bg.style.display = "none"
+		}, 500);
+})
 document.getElementById("friends__add").addEventListener("click",function(){
-	let popup = document.getElementById("popup");
-	let bg = document.getElementById("bg")
 	if(popup.style.display==="flex"){
 		popup.style.opacity = "0"
 		bg.style.opacity = "0"
@@ -34,15 +51,25 @@ document.getElementById("friends__add").addEventListener("click",function(){
 		}, 200);
 	}
 })
+document.getElementById("popup__search").addEventListener("click",addFriends)
 
+
+function friendRequest(cl){
+	let user = firebase.auth().currentUser.displayName;
+	let username = cl.className
+	ref.child(`users/${user}/friendRequests/${username}`)
+		.update({
+			username:username
+		})
+		$("." + username).html("Request sent")
+}
 function getFriends() {
 	var user = firebase.auth().currentUser.displayName;
-	let friendsNumber;
+	let friendsNumber = 0;
 	ref.child(`users/${user}/friends`).once("value")
 		.then(function (snapshot) {
 			snapshot.forEach(function (childSnapshot) {
 				friendsNumber++;
-				console.log(friendsNumber)
 				let key = childSnapshot.key;
 				let childData = childSnapshot.val();
 				console.log("key: ",key)
@@ -55,8 +82,41 @@ function getFriends() {
 				$("#friends__fullList").append(friend)
 			});
 			if (friendsNumber === 0) {
-				let noFriends = `<div class="profile__noEvents">You doonen't have anyone on your friend list.</div>`
-				$("#profile").append(noFriends)
+				let noFriends = `<div class="friends__noFriends">You don't have anyone on your friend list.</div>`
+				$("#friends__fullList").append(noFriends)
 			}
+		})
+}
+function addFriends(){
+		let user = firebase.auth().currentUser.displayName;
+		document.getElementById("friends__list").innerHTML = "";
+		let friendsInput = document.getElementById("friends__searchBar").value
+		let friendsNumber = 0;
+		let friends;
+		ref.child(`users/`).once("value")
+		.then(function (snapshot) {
+			snapshot.forEach(function (childSnapshot) {
+				if(childSnapshot.key === friendsInput && friendsInput !== user){
+					friendsNumber++;
+					friends = `<div class="friends__user">
+                    <h3>${childSnapshot.key}</h3>
+                    <button onClick = "friendRequest(this)" class="${childSnapshot.key}" id="friends__add" type="button"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="357px" height="357px" viewBox="0 0 357 357" style="enable-background:new 0 0 357 357;" xml:space="preserve">
+                        <g>
+                            <g id="add">
+                                <path d="M357,204H204v153h-51V204H0v-51h153V0h51v153h153V204z" />
+                            </g>
+                        </g>
+                        </svg>Send request</button>
+					</div>`
+					$("#friends__list").append(friends)
+					console.log(friendsNumber)
+				}
+			});
+			if (friendsNumber === 0) {
+				document.getElementById("friends__list").innerHTML = "";
+				friends = `<div class="popup__find">Couldn't find anyone with this username.</div>`
+				$("#friends__list").append(friends)
+			}
+			friendsNumber =0;
 		})
 }

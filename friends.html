@@ -135,22 +135,16 @@
 
         </div>
         <div id="popup" class="friends__addFriends popup">
-            <div class="friends__name">
+            <div class="friends__name" style="margin-top:50px">
                 <label for="friendName">Friend's username:</label>
                 <input class="friends__searchBar" id="friends__searchBar" type="text" name="friendName">
             </div>
-            <div class="friends__list">
-                <div class="friends__user">
-                    <h3>Nazwa</h3>
-                    <button id="friends__add" type="button"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="357px" height="357px" viewBox="0 0 357 357" style="enable-background:new 0 0 357 357;" xml:space="preserve">
-                        <g>
-                            <g id="add">
-                                <path d="M357,204H204v153h-51V204H0v-51h153V0h51v153h153V204z" />
-                            </g>
-                        </g>
-                        </svg>Send request</button>
-                </div>
+            <div class="friends__list" id="friends__list">
             </div>
+			<div style="display:flex;align-items:center;justify-content:center;">
+			<button id="popup__search" type="button" style="font-weight: 700;margin-top:10px;">Search</button>
+			 <button id="popup__cancel" class="cancel" type="button" style="font-weight: 700">Cancel</button>
+			 </div>
         </div>
     </div>
     <div class="bg" id="bg"></div>
