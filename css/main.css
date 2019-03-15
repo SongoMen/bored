@@ -233,13 +233,13 @@ input[type=button], input[type=submit],button[type=button] {
     text-transform: uppercase;
     font-size: 13px;
     font-family:Montserrat;
-    box-shadow: 0 10px 30px 0 rgba(255,94,87,04);
+    box-shadow: 0 10px 15px 0 rgba(255,94,87,04);
     border-radius: 5px 5px 5px 5px;
     margin: 25px 20px 40px 20px;
     transition: all .5s;
 }
 input[type=button]:hover, input[type=submit]:hover,button[type=button]:hover{
-    box-shadow: 0 0 30px 0 rgba(255,94,87,04);
+    box-shadow: 0 0 15px 0 rgba(255,94,87,04);
     background-color:#e6554d;
 }
 input[type=text], input[type=password] {
@@ -393,7 +393,7 @@ input[type=text]:focus,input[type=password]:focus {
     align-items: flex-end;
     flex-direction:column;
     user-select: none;
-    box-shadow: #03030336 0px 0px 20px 5px;
+    box-shadow: #03030336 0px 0px 15px 5px;
     margin:30px;
     flex-wrap: wrap;
 }
@@ -516,7 +516,7 @@ input[type=text]:focus,input[type=password]:focus {
 }
 
 #newEvent__cancel:hover, .cancel:hover{
-    box-shadow: 0 0 30px 0 rgb(142, 155, 168)!important;
+    box-shadow: 0 0 15px 0 rgb(142, 155, 168)!important;
 }
 
 label{
@@ -589,6 +589,18 @@ label{
     padding: 10px 20px;
 }
 
+.friends__invites{
+    background-color:#0E6BA8!important;
+}
+
+.friends__invites:hover{
+    box-shadow: 0 0 15px 0 #0E6BA8!important;
+}
+
+.friends__buttons,.requests__buttons{
+    display: flex;
+}
+
 .friends__heading button svg{
     width:9px;
     height: 9px;
@@ -609,15 +621,20 @@ label{
 }
 
 .friends__user{
-    width:200px;
+    width:300px;
     background-color:#1a1a25;
-    padding:10px;
+    padding:10px 0;
     display: flex;
     align-items: center;
     flex-direction: column;
     border-radius: 5px;
     margin:15px;
-    height: 130px;
+    height: 170px;
+}
+
+.friends__message{
+    padding:8px 30px!important;
+    margin-top:15px!important;
 }
 
 .friends__fullList svg{
@@ -625,6 +642,12 @@ label{
     height: 20px;
     fill:white;
     margin-right: 10px;
+}
+
+.friends__remove{
+    cursor: pointer;
+    width:15px!important;
+    height: 15px!important;
 }
 
 .friends__list svg{
@@ -653,6 +676,51 @@ label{
     padding:70px;
     height: 60%;
 }
+
+.requests__list{
+    height: 70%;
+    width:90%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.requests__user{
+    width:35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 150px;
+    background-color:#101016;
+    margin:20px;
+}
+
+.requests__user button{
+    padding: 10px 20px;
+    font-size:10px
+}
+
+.accept,.decline{
+    box-shadow: none!important;
+    font-weight: bold;
+}
+
+.accept{
+    background-color:#32FCA1!important;
+}
+
+.decline{
+    background-color:#ff5e57;
+}
+
+.accept:hover{
+    box-shadow: 0px 0px 10px 0px #32FCA1!important;
+}
+
+.decline:hover{
+    box-shadow: 0px 0px 10px 0px #ff5e57!important;
+}
+
 
 /* ####################################################################### MEDIA ######################################################################### */
 

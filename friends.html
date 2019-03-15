@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Bored – Friends</title>
-    
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-        <link rel="stylesheet" type="text/css" media="screen" href="css/main.css">
-        <link rel="icon" href="img/favicon.ico">
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700,900,900i" rel="stylesheet">
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.8.3/firebase.js"></script>
-        <script src="scripts/config.js"></script>
-    </head>
+<head>
+    <title>Bored – Friends</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css">
+    <link rel="icon" href="img/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700,900,900i" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.3/firebase.js"></script>
+    <script src="scripts/config.js"></script>
+</head>
+
 <body>
     <div class="preloader" id="preloader">
         <div class="loading-data three-bounce">
@@ -47,9 +49,10 @@
                             </g>
                         </g>
                     </svg>
-                    <h3>Dashboard</h3></li>
-                <li  class="active" id="leftbar__friends"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129"
-                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <h3>Dashboard</h3>
+                </li>
+                <li class="active" id="leftbar__friends"><svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <g>
                             <g>
                                 <path
@@ -60,7 +63,9 @@
                                     d="m10.5,95.8h13.2v13.5c0,1.6 0.9,3 2.3,3.7 0.6,0.3 1.2,0.4 1.8,0.4 0.9,0 1.8-0.3 2.5-0.8l22-16.7h66.2c2.3,0 4.1-1.8 4.1-4.1v-72.9c0-2.3-1.8-4.1-4.1-4.1h-108c-2.3,0-4.1,1.8-4.1,4.1v72.8c0,2.3 1.9,4.1 4.1,4.1zm4.1-72.8h99.7v64.6h-63.4c-0.9,0-1.8,0.3-2.5,0.8l-16.5,12.6v-9.3c0-2.3-1.8-4.1-4.1-4.1h-13.2v-64.6z" />
                             </g>
                         </g>
-                    </svg><h3>Friends</h3></li>
+                    </svg>
+                    <h3>Friends</h3>
+                </li>
                 <li id="leftbar__profile"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
                         style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -73,7 +78,9 @@
                            c59.551,0,108,48.448,108,108S315.551,256,256,256z" />
                             </g>
                         </g>
-                    </svg><h3>Profile</h3></li>
+                    </svg>
+                    <h3>Profile</h3>
+                </li>
                 <li id="leftbar__settings">
                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 478.703 478.703"
@@ -108,7 +115,8 @@
                             </g>
                         </g>
                     </svg>
-                    <h3>Settings</h3></li>
+                    <h3>Settings</h3>
+                </li>
             </ul>
         </div>
         <div class="leftbar__user">
@@ -123,17 +131,30 @@
     <div class="friends" id="friends">
         <div class="friends__heading">
             <h2>Friends List</h2>
-            <button id="friends__add" type="button"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="357px" height="357px" viewBox="0 0 357 357" style="enable-background:new 0 0 357 357;" xml:space="preserve">
-                <g>
-                    <g id="add">
-                        <path d="M357,204H204v153h-51V204H0v-51h153V0h51v153h153V204z" />
-                    </g>
-                </g>
-                </svg>Add new friends</button>
+            <div class="friends__buttons" id="friends__buttons">
+                <button id="friends__add" type="button"><svg version="1.1" id="Capa_1"
+                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        width="357px" height="357px" viewBox="0 0 357 357" style="enable-background:new 0 0 357 357;"
+                        xml:space="preserve">
+                        <g>
+                            <g id="add">
+                                <path d="M357,204H204v153h-51V204H0v-51h153V0h51v153h153V204z" />
+                            </g>
+                        </g>
+                    </svg>Add new friends</button>
+            </div>
         </div>
         <div class="friends__fullList" id="friends__fullList">
-
         </div>
+
+        <div id="requests" class="friends__requests popup">
+            <div id="requests__list" class="requests__list">
+            </div>
+            <div style="display:flex;align-items:center;justify-content:center;">
+                <button id="requests__cancel" class="cancel" type="button" style="font-weight: 700">Cancel</button>
+            </div>
+        </div>
+
         <div id="popup" class="friends__addFriends popup">
             <div class="friends__name" style="margin-top:50px">
                 <label for="friendName">Friend's username:</label>
@@ -141,14 +162,15 @@
             </div>
             <div class="friends__list" id="friends__list">
             </div>
-			<div style="display:flex;align-items:center;justify-content:center;">
-			<button id="popup__search" type="button" style="font-weight: 700">Search</button>
-			 <button id="popup__cancel" class="cancel" type="button" style="font-weight: 700">Cancel</button>
-			 </div>
+            <div style="display:flex;align-items:center;justify-content:center;">
+                <button id="popup__search" type="button" style="font-weight: 700">Search</button>
+                <button id="popup__cancel" class="cancel" type="button" style="font-weight: 700">Cancel</button>
+            </div>
         </div>
     </div>
     <div class="bg" id="bg"></div>
     <script src="scripts/friends.js"></script>
     <script src="scripts/menu.js"></script>
-   </body>
+</body>
+
 </html>
