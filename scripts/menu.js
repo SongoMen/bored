@@ -10,3 +10,13 @@ document.getElementById("leftbar__dashboard").addEventListener('click', function
 document.getElementById("leftbar__friends").addEventListener('click', function () {
 	window.location.href = "friends.html"
 })
+
+document.getElementById("leftbar__logout").addEventListener('click', logOut)
+
+function logOut() {
+	firebase.auth().signOut().then(function () {
+		window.location.href = "login.html"
+	}, function (error) {
+		console.log(error)
+	});
+}

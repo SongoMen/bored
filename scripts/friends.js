@@ -1,16 +1,6 @@
 const ref = firebase.database().ref();
 var popup = document.getElementById("popup");
 var bg = document.getElementById("bg")
-
-function logOut() {
-	firebase.auth().signOut().then(function () {
-		window.location.href = "login.html"
-	}, function (error) {
-		console.log(error)
-	});
-}
-document.getElementById("leftbar__logout").addEventListener('click', logOut)
-
 firebase.auth().onAuthStateChanged(function (user) {
 	if (user) {
 		var user = firebase.auth().currentUser.displayName;

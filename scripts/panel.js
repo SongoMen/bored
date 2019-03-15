@@ -2,7 +2,6 @@ const ref = firebase.database().ref();
 
 document.getElementById("newEvent__submit").addEventListener("click", createEvent)
 document.getElementById("topbar__add").addEventListener('click', newEvent)
-document.getElementById("leftbar__logout").addEventListener('click', logOut)
 document.getElementById("newEvent__cancel").addEventListener('click',function(){
 	document.getElementById("newEvent").style.opacity = "0"
 	document.getElementById("bg").style.opacity = "0"
@@ -241,13 +240,6 @@ function refreshPanel() {
 				$("#dashboard").append(noEvents)
 			}
 		})
-}
-function logOut() {
-	firebase.auth().signOut().then(function () {
-		window.location.href = "login.html"
-	}, function (error) {
-		console.log(error)
-	});
 }
 function newEvent() {
 	if (document.getElementById("newEvent").style.display === "flex") {
