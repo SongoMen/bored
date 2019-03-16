@@ -5,7 +5,8 @@ firebase.auth().onAuthStateChanged(function (user) {
 		let user = firebase.auth().currentUser.displayName;
 		let createdDate = firebase.auth().currentUser.created;
 		document.getElementById("leftbar__username").innerHTML = user
-
+		document.getElementById("leftbar__username1").innerHTML = user
+		
 		ref.child(`users/${user}/info/`).once("value")
 		.then(function(snapshot) {
 		  let createdDate = snapshot.child("createdDate").val();
