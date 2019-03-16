@@ -35,15 +35,12 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 function refreshPanel() {
 	var user = firebase.auth().currentUser.displayName;
-	let currentdate = new Date();
-	let datetime = currentdate.getDay() + "/"+currentdate.getMonth() 
-	+ "/" + currentdate.getFullYear() + " @ " 
-	+ currentdate.getHours() + ":" 
-	+ currentdate.getMinutes() + ":" + currentdate.getSeconds();
+
+	let today = new Date().format('d/m/Y h:i'); 
 
 	ref.child(`users/${user}/info`)
 	.update({
-		lastOnline: datetime
+		lastOnline: today
 	})
 
 	document.getElementById("dashboard").innerHTML="";
