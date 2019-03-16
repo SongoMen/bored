@@ -38,7 +38,7 @@ h2 {
 }
 
 h3 {
-    font-size: calc(9px + (15 - 9) * ((100vw - 350px) / (1920 - 350)));
+    font-size: calc(12px + (15 - 12) * ((100vw - 350px) / (1920 - 350)));
     margin: 10px 0;
 }
 
@@ -115,6 +115,52 @@ h5{
       transform: scale(.75);
     }
   }
+
+/* ####################################################################### HAMBURGER ######################################################################### */
+
+.hamburger{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1;
+    width: 36px;
+    height: 36px;
+    box-sizing: border-box;
+    padding: 11px 0 0 9px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hamburger span {
+    display: block;
+    width: 16px;
+    height: 2px;
+    background: rgb(255, 255, 255);
+    transition: .7s;
+    pointer-events: none;
+}
+
+.hamburger span:nth-child(2) {
+    margin: 3px 0;
+  }
+
+  .open {
+    border-color: rgba(255,255,255,.2);
+  }
+  .open span {
+    background: #fff;
+  }
+  .open :first-child {
+    transform: translateY(5px) rotate(-45deg);
+  }
+  .open :nth-child(2) {
+    transform: rotate(-45deg);
+    opacity: 0;
+  }
+  .open :last-child {
+    transform: translateY(-5px) rotate(-135deg);
+  }
+
 
 /* ####################################################################### MAIN PAGE ######################################################################### */
 
@@ -233,13 +279,13 @@ input[type=button], input[type=submit],button[type=button] {
     text-transform: uppercase;
     font-size: 13px;
     font-family:Montserrat;
-    box-shadow: 0 10px 15px 0 rgba(255,94,87,04);
+    box-shadow: 0 10px 15px 0 rgba(255,94,87,0.4);
     border-radius: 5px 5px 5px 5px;
     margin: 25px 20px 40px 20px;
     transition: all .5s;
 }
 input[type=button]:hover, input[type=submit]:hover,button[type=button]:hover{
-    box-shadow: 0 0 15px 0 rgba(255,94,87,04);
+    box-shadow: 0 0 15px 0 rgba(255,94,87,0.4);
     background-color:#e6554d;
 }
 input[type=text], input[type=password] {
@@ -743,8 +789,13 @@ label{
     .leftbar{
         display: none;
     }
-    .panel{
+    .panel,.friends,.profile{
         width:100%!important;
+    }
+
+    .friends__fullList{
+        padding:10px;
+        height: 65%;
     }
 }
 @media only screen and (max-width: 920px) {

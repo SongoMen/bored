@@ -20,3 +20,14 @@ function logOut() {
 		console.log(error)
 	});
 }
+
+document.getElementById("hamburger").addEventListener("click",openMenu)
+
+function openMenu(){
+	if(document.getElementById("hamburger").classList.contains("open")){
+		document.getElementById("hamburger").classList.remove("open")
+	}
+	else{
+		document.getElementById("hamburger").classList.add("open")
+	}
+}
