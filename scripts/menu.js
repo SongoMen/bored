@@ -26,8 +26,16 @@ document.getElementById("hamburger").addEventListener("click",openMenu)
 function openMenu(){
 	if(document.getElementById("hamburger").classList.contains("open")){
 		document.getElementById("hamburger").classList.remove("open")
+		document.getElementById("mobileMenu").style.marginLeft="-800px";
+		setTimeout(() => {
+			document.getElementById("mobileMenu").style.display="none";
+		}, 500);
 	}
 	else{
 		document.getElementById("hamburger").classList.add("open")
+		document.getElementById("mobileMenu").style.display="flex";
+		setTimeout(() => {
+			document.getElementById("mobileMenu").style.marginLeft="0";
+		}, 200);
 	}
 }

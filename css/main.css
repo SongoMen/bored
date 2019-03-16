@@ -120,15 +120,15 @@ h5{
 
 .hamburger{
     position: absolute;
+    display: none;
     top: 20px;
     left: 20px;
-    z-index: 1;
+    z-index: 21;
     width: 36px;
     height: 36px;
     box-sizing: border-box;
     padding: 11px 0 0 9px;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid #7d7b90
 }
 
 .hamburger span {
@@ -144,9 +144,6 @@ h5{
     margin: 3px 0;
   }
 
-  .open {
-    border-color: rgba(255,255,255,.2);
-  }
   .open span {
     background: #fff;
   }
@@ -160,7 +157,27 @@ h5{
   .open :last-child {
     transform: translateY(-5px) rotate(-135deg);
   }
-
+ #mobileMenu {
+      display: none;
+      width:100%;
+      transition: all .5s;
+      background: linear-gradient(135deg, #29252e 0%,#16161d 100%);
+      position: absolute;
+      margin-left:-800px;
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
+      z-index: 21;
+  }
+  #mobileMenu .leftbar__user{
+      margin-top:auto;
+  }
+  #mobileMenu a:first-child{
+      margin-bottom: auto
+  }
+  #mobileMenu .leftbar__menu{
+      margin-top:200px;
+  }
 
 /* ####################################################################### MAIN PAGE ######################################################################### */
 
@@ -320,7 +337,7 @@ input[type=text]:focus,input[type=password]:focus {
     user-select: none;
     text-transform: uppercase;
 }
-.leftbar a svg{
+.leftbar a svg,.mobileMenu a svg{
     width:50px;
     height: 50px;
     margin-left:-10px;
@@ -330,12 +347,12 @@ input[type=text]:focus,input[type=password]:focus {
     margin-bottom:200px;
 }
 
-.leftbar ul {
+ul {
     list-style-type: none;
     padding: 0;
 }
 
-.leftbar li {
+.leftbar li,.mobileMenu li {
     display: flex;
     align-items: center;
     font-size: 12px;
@@ -791,8 +808,15 @@ label{
     }
     .panel,.friends,.profile{
         width:100%!important;
+        padding:20px;
     }
-
+    .hamburger{
+        display: block;
+    }
+    .panel{
+        padding:0;
+    }
+    
     .friends__fullList{
         padding:10px;
         height: 65%;
