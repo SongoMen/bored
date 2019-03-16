@@ -10,6 +10,18 @@ document.getElementById("leftbar__dashboard").addEventListener('click', function
 document.getElementById("leftbar__friends").addEventListener('click', function () {
 	window.location.href = "friends.html"
 })
+document.getElementById("leftbar__settings2").addEventListener('click', function () {
+	window.location.href = "settings.html"
+})
+document.getElementById("leftbar__profile2").addEventListener('click', function () {
+	window.location.href = "profile.html"
+})
+document.getElementById("leftbar__dashboard2").addEventListener('click', function () {
+	window.location.href = "panel.html"
+})
+document.getElementById("leftbar__friends2").addEventListener('click', function () {
+	window.location.href = "friends.html"
+})
 
 document.getElementById("leftbar__logout").addEventListener('click', logOut)
 
