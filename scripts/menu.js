@@ -24,6 +24,8 @@ document.getElementById("leftbar__friends2").addEventListener('click', function 
 })
 
 document.getElementById("leftbar__logout").addEventListener('click', logOut)
+document.getElementById("leftbar__logout1").addEventListener('click', logOut)
+
 
 function logOut() {
 	firebase.auth().signOut().then(function () {
