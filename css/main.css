@@ -38,7 +38,7 @@ h2 {
 }
 
 h3 {
-    font-size: 12px
+    font-size: 12px;    
     margin: 10px 0;
 }
 
@@ -373,7 +373,7 @@ input[type=text]:focus,input[type=password]:focus {
     user-select: none;
     text-transform: uppercase;
 }
-.leftbar a svg,.mobileMenu a svg{
+.leftbar a svg{
     width:50px;
     height: 50px;
     margin-left:-10px;
@@ -388,7 +388,7 @@ ul {
     padding: 0;
 }
 
-.leftbar li,.mobileMenu li {
+.leftbar li {
     display: flex;
     align-items: center;
     font-size: 12px;
@@ -839,6 +839,18 @@ label{
 }
 
 @media only screen and (max-width: 700px) {
+    #newEvent__cancel{
+        margin-top:0
+    }
+    .newEvent__submit{
+        font-size:11px!important;
+    }
+    button[type=button]{
+        padding: 10px 15px;
+    }
+    .newEvent input[type="text"]{
+        width:200px;
+    }
     .leftbar{
         display: none;
     }

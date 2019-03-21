@@ -2,58 +2,71 @@ const ref = firebase.database().ref();
 
 document.getElementById("newEvent__submit").addEventListener("click", createEvent)
 document.getElementById("topbar__add").addEventListener('click', newEvent)
-document.getElementById("newEvent__cancel").addEventListener('click',function(){
+document.getElementById("newEvent__cancel").addEventListener('click', function ()
+{
 	document.getElementById("newEvent").style.opacity = "0"
 	document.getElementById("bg").style.opacity = "0"
-	setTimeout(() => {
+	setTimeout(() =>
+	{
 		document.getElementById("newEvent").style.display = "none"
 		document.getElementById("bg").style.display = "none"
 	}, 500);
 })
 
 $('#newEvent__hours').inputmask("hh:mm");
-$('#newEvent__date').inputmask({
+$('#newEvent__date').inputmask(
+{
 	alias: "date",
 	"placeholder": "__/__/____"
 });
-firebase.auth().onAuthStateChanged(function (user) {
-	if (user) {
+firebase.auth().onAuthStateChanged(function (user)
+{
+	if (user)
+	{
 		var user = firebase.auth().currentUser.displayName;
 		document.getElementById("leftbar__username").innerHTML = user
 		document.getElementById("leftbar__username1").innerHTML = user
-		setTimeout(() => {
+		setTimeout(() =>
+		{
 			document.getElementById("preloader").style.display = "none";
 		}, 1000);
-		setTimeout(() => {
+		setTimeout(() =>
+		{
 			refreshPanel();
 		}, 800);
 	}
-	else{
-		window.location.href="login.html"
+	else
+	{
+		window.location.href = "login.html"
 	}
 
 });
 
-function refreshPanel() {
+function refreshPanel()
+{
 	var user = firebase.auth().currentUser.displayName;
 
-	let today = new Date().format('d/m/Y h:i'); 
+	let today = new Date().format('d/m/Y h:i');
 
 	ref.child(`users/${user}/info`)
-	.update({
-		lastOnline: today
-	})
+		.update(
+		{
+			lastOnline: today
+		})
 
-	document.getElementById("dashboard").innerHTML="";
+	document.getElementById("dashboard").innerHTML = "";
 	let eventNumber = 0;
 	ref.child(`users/${user}/events`).once("value")
-		.then(function (snapshot) {
-			snapshot.forEach(function (childSnapshot) {
+		.then(function (snapshot)
+		{
+			snapshot.forEach(function (childSnapshot)
+			{
 				eventNumber++;
 				let key = childSnapshot.key;
 				let childData = childSnapshot.val();
 				let eventIcon;
-				if (childData.type === "Meeting") {
+				if (childData.type === "Meeting")
+				{
 					eventIcon = `<svg class="dashboard__type" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512.002 512.002" style="enable-background:new 0 0 512.002 512.002;" xml:space="preserve">
 								<g>
 										<g>
@@ -93,7 +106,8 @@ function refreshPanel() {
 								</g>
 						</svg>`
 				}
-				else {
+				else
+				{
 					eventIcon = `<svg class="dashboard__type" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve">
 								<g>
 									<g>
@@ -233,43 +247,55 @@ function refreshPanel() {
 						</div> `
 				$("#dashboard").append(event)
 			});
-			if (eventNumber === 0) {
+			if (eventNumber === 0)
+			{
 				let noEvents = `<div class="dashboard__noEvents">You don't have any events planned.</div>`
 				$("#dashboard").append(noEvents)
 			}
 		})
 }
-function newEvent() {
-	if (document.getElementById("newEvent").style.display === "flex") {
+
+function newEvent()
+{
+	if (document.getElementById("newEvent").style.display === "flex")
+	{
 		document.getElementById("newEvent").style.opacity = "0"
 		document.getElementById("bg").style.opacity = "0"
-		setTimeout(() => {
+		setTimeout(() =>
+		{
 			document.getElementById("newEvent").style.display = "none"
 			document.getElementById("bg").style.display = "none"
 		}, 500);
-	} else {
+	}
+	else
+	{
 		document.getElementById("newEvent").style.display = "flex"
 		document.getElementById("bg").style.display = "block"
-		setTimeout(() => {
+		setTimeout(() =>
+		{
 			document.getElementById("newEvent").style.opacity = "1"
 			document.getElementById("bg").style.opacity = ".7"
 		}, 200);
 	}
 }
-function createEvent() {
+
+function createEvent()
+{
 	let eventName = document.getElementById("newEvent__nameInput").value;
 	let eventDate = document.getElementById("newEvent__date").value;
 	let eventTime = document.getElementById("newEvent__hours").value;
 	let type = document.getElementById("slct").value;
 	var user = firebase.auth().currentUser.displayName;
 	ref.child(`users/${user}/events/${eventName}`)
-		.set({
+		.set(
+		{
 			name: eventName,
 			date: eventDate,
 			time: eventTime,
 			type: type
 		})
-		.then(() => {
+		.then(() =>
+		{
 			document.getElementById("newEvent").style.display = "none"
 			document.getElementById("bg").style.display = "none"
 			refreshPanel();
