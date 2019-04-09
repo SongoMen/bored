@@ -1031,7 +1031,6 @@ label{
 }
 
 .requests__user{
-    width:35%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
