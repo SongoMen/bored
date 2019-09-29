@@ -60,7 +60,7 @@ function sendInfo(){
                     ref.child(`users/${username}/info`)
                     .set({
                       username:username,
-                      email,email,
+                      email:email,
                       password:password,
                       createdDate: today
                     })

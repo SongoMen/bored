@@ -8,7 +8,7 @@ function login(){
     .then(()=>{
         window.location.href="panel.html"
     })
-    .catch((error)=>{
+    .catch(()=>{
         document.getElementById("errorMsg").innerHTML = "Wrong email or password"
     })
 }

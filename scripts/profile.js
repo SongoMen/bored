@@ -3,7 +3,6 @@ const ref = firebase.database().ref();
 firebase.auth().onAuthStateChanged(function (user) {
 	if (user) {
 		let user = firebase.auth().currentUser.displayName;
-		let createdDate = firebase.auth().currentUser.created;
 		document.getElementById("leftbar__username").innerHTML = user
 		document.getElementById("leftbar__username1").innerHTML = user
 		

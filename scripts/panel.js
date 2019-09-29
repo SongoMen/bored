@@ -62,7 +62,6 @@ function refreshPanel()
 			snapshot.forEach(function (childSnapshot)
 			{
 				eventNumber++;
-				let key = childSnapshot.key;
 				let childData = childSnapshot.val();
 				let eventIcon;
 				if (childData.type === "Meeting")
