@@ -1,98 +1,79 @@
 const ref = firebase.database().ref();
 var popup = document.getElementById("popup");
 var popupRequests = document.getElementById("requests");
-var bg = document.getElementById("bg")
+var bg = document.getElementById("bg");
 var friends = [],
 	last;
 
-firebase.auth().onAuthStateChanged(function (user)
-{
-	if (user)
-	{
-		var user = firebase.auth().currentUser.displayName;
-		document.getElementById("leftbar__username").innerHTML = user
-		document.getElementById("leftbar__username1").innerHTML = user
+firebase.auth().onAuthStateChanged(function (user) {
+	var user = firebase.auth().currentUser.displayName;
+
+	if (user) {
+		document.getElementById("leftbar__username").innerHTML = user;
+		document.getElementById("leftbar__username1").innerHTML = user;
 		getFriends();
 		checkRequests();
-		setTimeout(() =>
-		{
+		setTimeout(() => {
 			document.getElementById("preloader").style.display = "none";
 		}, 1000);
-	}
-	else
-	{
-		window.location.href = "login.html"
+	} else {
+		window.location.href = "login.html";
 	}
 });
 
-document.getElementById("popup__cancel").addEventListener("click", function ()
-{
-	popup.style.opacity = "0"
-	bg.style.opacity = "0"
-	setTimeout(() =>
-	{
-		popup.style.display = "none"
-		bg.style.display = "none"
+document.getElementById("popup__cancel").addEventListener("click", function () {
+	popup.style.opacity = "0";
+	bg.style.opacity = "0";
+	setTimeout(() => {
+		popup.style.display = "none";
+		bg.style.display = "none";
 	}, 500);
 })
-document.getElementById("requests__cancel").addEventListener("click", function ()
-{
-	popupRequests.style.opacity = "0"
-	bg.style.opacity = "0"
-	setTimeout(() =>
-	{
-		popupRequests.style.display = "none"
-		bg.style.display = "none"
+document.getElementById("requests__cancel").addEventListener("click", function () {
+	popupRequests.style.opacity = "0";
+	bg.style.opacity = "0";
+	setTimeout(() => {
+		popupRequests.style.display = "none";
+		bg.style.display = "none";
 	}, 500);
 })
-document.getElementById("friends__add").addEventListener("click", function ()
-{
-	if (popup.style.display === "flex")
-	{
-		popup.style.opacity = "0"
-		bg.style.opacity = "0"
-		setTimeout(() =>
-		{
-			popup.style.display = "none"
-			bg.style.display = "none"
+document.getElementById("friends__add").addEventListener("click", function () {
+	if (popup.style.display === "flex") {
+		popup.style.opacity = "0";
+		bg.style.opacity = "0";
+		setTimeout(() => {
+			popup.style.display = "none";
+			bg.style.display = "none";
 		}, 500);
-	}
-	else
-	{
-		popup.style.display = "flex"
-		bg.style.display = "block"
-		setTimeout(() =>
-		{
-			popup.style.opacity = "1"
-			bg.style.opacity = ".7"
+	} else {
+		popup.style.display = "flex";
+		bg.style.display = "block";
+		setTimeout(() => {
+			popup.style.opacity = "1";
+			bg.style.opacity = ".7";
 		}, 200);
 	}
 })
 document.getElementById("popup__search").addEventListener("click", addFriends)
 
 
-setTimeout(() =>
-{
-	if (document.getElementById("friends__buttons").contains(document.getElementById("friends__invites")))
-	{
-		document.getElementById("friends__invites").addEventListener("click", getRequests)
+setTimeout(() => {
+	if (document.getElementById("friends__buttons").contains(document.getElementById("friends__invites"))) {
+		document.getElementById("friends__invites").addEventListener("click", getRequests);
 		clearTimeout();
 	}
 }, 2000);
 
-function getRequests()
-{
-	document.getElementById("requests__list").innerHTML = ""
+function getRequests() {
+	document.getElementById("requests__list").innerHTML = "";
 	let appendDiv;
-	popupRequests.style.display = "flex"
-	bg.style.display = "block"
-	setTimeout(() =>
-	{
-		popupRequests.style.opacity = "1"
-		bg.style.opacity = ".7"
+	popupRequests.style.display = "flex";
+	bg.style.display = "block";
+	setTimeout(() => {
+		popupRequests.style.opacity = "1";
+		bg.style.opacity = ".7";
 	}, 200);
-	for (let i = 0; i < friends.length; i++)
-	{
+	for (let i = 0; i < friends.length; i++) {
 		appendDiv = `<div class="requests__user" id=${friends[i]}>
 			<h3>${friends[i]}</h3>
 			<div class="requests__buttons">
@@ -100,50 +81,42 @@ function getRequests()
 			<button onClick = "acceptOrDecline(this)" class="decline ${friends[i]}" type="button">Decline</button>
 			</div>
 			</div>`
-		$("#requests__list").append(appendDiv)
+		$("#requests__list").append(appendDiv);
 	}
 }
 
-function removeFriends(name)
-{
+function removeFriends(name) {
 	var user = firebase.auth().currentUser.displayName;
-	let name1 = name.animVal.split(" ")
+	let name1 = name.animVal.split(" ");
 
 	console.log(name)
 	ref.child(`users/${user}/friends/${name1[1]}`)
-		.remove()
+		.remove();
 	ref.child(`users/${name1[1]}/friends/${user}`)
-		.remove()
+		.remove();
 	getFriends();
 }
 
-function acceptOrDecline(name)
-{
+function acceptOrDecline(name) {
 	var user = firebase.auth().currentUser.displayName;
-	let name1 = name.className.split(" ")
-	let username = name1[1]
-	if (name1[0] == "accept")
-	{
+	let name1 = name.className.split(" ");
+	let username = name1[1];
+	if (name1[0] == "accept") {
 		ref.child(`users/${user}/recivedRequests/${username}`)
 			.remove()
-			.then(() =>
-			{
+			.then(() => {
 				ref.child(`users/${username}/sentRequests/${user}`)
 					.remove()
 				ref.child(`users/${user}/friends/${username}`)
-					.update(
-					{
+					.update({
 						name: name1[1]
 					})
 				ref.child(`users/${username}/friends/${user}`)
-					.update(
-					{
+					.update({
 						name: user
 					})
 			})
-	}
-	else
-	{
+	} else {
 		ref.child(`users/${user}/recivedRequests/${username}`)
 			.remove()
 		ref.child(`users/${username}/sentRequests/${user}`)
@@ -154,47 +127,37 @@ function acceptOrDecline(name)
 	checkRequests();
 }
 
-function friendRequest(cl)
-{
+function friendRequest(cl) {
 	let user = firebase.auth().currentUser.displayName;
-	let username = cl.className
+	let username = cl.className;
 	ref.child(`users/${user}/sentRequests/${username}`)
-		.update(
-		{
+		.update({
 			username: username
 		})
 	ref.child(`users/${username}/recivedRequests/${user}`)
-		.update(
-		{
+		.update({
 			user: user
 		})
-	$("." + username).html("Request sent")
+	$("." + username).html("Request sent");
 }
 
-function checkRequests()
-{
+function checkRequests() {
 	let user = firebase.auth().currentUser.displayName;
 	let requests = 0;
 	let invites;
 	let notification;
 	ref.child(`users/${user}/recivedRequests`).once("value")
-		.then(function (snapshot)
-		{
-			snapshot.forEach(function (childSnapshot)
-			{
+		.then(function (snapshot) {
+			snapshot.forEach(function (childSnapshot) {
 				let key = childSnapshot.key;
 				friends.push(key);
 				requests++;
 			})
-			if (requests > 0)
-			{
-				if (requests === 1)
-				{
-					notification = "1 FRIEND REQUEST"
-				}
-				else
-				{
-					notification = requests + " FRIEND REQUESTS"
+			if (requests > 0) {
+				if (requests === 1) {
+					notification = "1 FRIEND REQUEST";
+				} else {
+					notification = requests + " FRIEND REQUESTS";
 				}
 				invites = `<button id="friends__invites" class="friends__invites" type="button"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="510px" height="510px" viewBox="0 0 510 510" style="enable-background:new 0 0 510 510;" xml:space="preserve">
 				<g>
@@ -203,29 +166,25 @@ function checkRequests()
 					</g>
 				</g>
 				</svg>${notification}</button>`
-				$("#friends__buttons").append(invites)
+				$("#friends__buttons").append(invites);
 			}
 			requests = 0;
 		})
 }
 
-function getFriends()
-{
-	document.getElementById("friends__fullList").innerHTML = ""
+function getFriends() {
+	document.getElementById("friends__fullList").innerHTML = "";
 	let user = firebase.auth().currentUser.displayName;
 	let friendsNumber = 0;
 	ref.child(`users/${user}/friends`).once("value")
-		.then(function (snapshot)
-		{
-			snapshot.forEach(function (childSnapshot)
-			{
+		.then(function (snapshot) {
+			snapshot.forEach(function (childSnapshot) {
 				friendsNumber++;
 				let key = childSnapshot.key;
 				ref.child(`users/${key}/info`).once("value")
-					.then(function (snapshot)
-					{
+					.then(function (snapshot) {
 						let childData = snapshot.val();
-						last = childData.lastOnline
+						last = childData.lastOnline;
 						let friend = `<div class="friends__user">
 					<svg class="friends__remove ${key}" onclick = "removeFriends(this.className)" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 47.971 47.971" style="margin-left:auto;" xml:space="preserve">
 <g>
@@ -239,28 +198,23 @@ function getFriends()
 						$("#friends__fullList").append(friend)
 					})
 			});
-			if (friendsNumber === 0)
-			{
+			if (friendsNumber === 0) {
 				let noFriends = `<div class="friends__noFriends">You don't have anyone on your friend list.</div>`
 				$("#friends__fullList").append(noFriends)
 			}
 		})
 }
 
-function addFriends()
-{
+function addFriends() {
 	let user = firebase.auth().currentUser.displayName;
 	document.getElementById("friends__list").innerHTML = "";
 	let friendsInput = document.getElementById("friends__searchBar").value
 	let friendsNumber = 0;
 	let friends;
 	ref.child(`users/`).once("value")
-		.then(function (snapshot)
-		{
-			snapshot.forEach(function (childSnapshot)
-			{
-				if (childSnapshot.key === friendsInput && friendsInput !== user)
-				{
+		.then(function (snapshot) {
+			snapshot.forEach(function (childSnapshot) {
+				if (childSnapshot.key === friendsInput && friendsInput !== user) {
 					friendsNumber++;
 					friends = `<div class="friends__user">
                     <h3>${childSnapshot.key}</h3>
@@ -271,16 +225,14 @@ function addFriends()
                             </g>
                         </g>
                         </svg>Send request</button>
-					</div>`
-					$("#friends__list").append(friends)
-					console.log(friendsNumber)
-				}
+					</div>`;
+					$("#friends__list").append(friends);
+=				}
 			});
-			if (friendsNumber === 0)
-			{
+			if (friendsNumber === 0) {
 				document.getElementById("friends__list").innerHTML = "";
-				friends = `<div class="popup__find">Couldn't find anyone with this username.</div>`
-				$("#friends__list").append(friends)
+				friends = `<div class="popup__find">Couldn't find anyone with this username.</div>`;
+				$("#friends__list").append(friends);
 			}
 			friendsNumber = 0;
 		})
