@@ -39,7 +39,7 @@ function sendInfo(){
                             displayName: username
                         })
                     .catch(function(error) {
-                        console.log(error);
+                        return error
                     });
                     let today = new Date();
                     let dd = today.getDate();
@@ -74,4 +74,4 @@ function sendInfo(){
         }
     });
 }
-document.getElementById("submit").addEventListener('click', sendInfo);
+document.getElementById("submit").addEventListener("click", sendInfo);
