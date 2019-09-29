@@ -1,31 +1,32 @@
 const ref = firebase.database().ref();
 
-document.getElementById("newEvent__submit").addEventListener("click", createEvent)
-document.getElementById("topbar__add").addEventListener('click', newEvent)
-document.getElementById("newEvent__cancel").addEventListener('click', function ()
+document.getElementById("newEvent__submit").addEventListener("click", createEvent);
+document.getElementById("topbar__add").addEventListener("click", newEvent);
+document.getElementById("newEvent__cancel").addEventListener("click", function ()
 {
-	document.getElementById("newEvent").style.opacity = "0"
-	document.getElementById("bg").style.opacity = "0"
+	document.getElementById("newEvent").style.opacity = "0";
+	document.getElementById("bg").style.opacity = "0";
 	setTimeout(() =>
 	{
-		document.getElementById("newEvent").style.display = "none"
-		document.getElementById("bg").style.display = "none"
+		document.getElementById("newEvent").style.display = "none";
+		document.getElementById("bg").style.display = "none";
 	}, 500);
 })
 
-$('#newEvent__hours').inputmask("hh:mm");
-$('#newEvent__date').inputmask(
+$("#newEvent__hours").inputmask("hh:mm");
+$("#newEvent__date").inputmask(
 {
 	alias: "date",
 	"placeholder": "__/__/____"
 });
 firebase.auth().onAuthStateChanged(function (user)
 {
+	var user = firebase.auth().currentUser.displayName;
+
 	if (user)
 	{
-		var user = firebase.auth().currentUser.displayName;
-		document.getElementById("leftbar__username").innerHTML = user
-		document.getElementById("leftbar__username1").innerHTML = user
+		document.getElementById("leftbar__username").innerHTML = user;
+		document.getElementById("leftbar__username1").innerHTML = user;
 		setTimeout(() =>
 		{
 			document.getElementById("preloader").style.display = "none";
@@ -37,7 +38,7 @@ firebase.auth().onAuthStateChanged(function (user)
 	}
 	else
 	{
-		window.location.href = "login.html"
+		window.location.href = "login.html";
 	}
 
 });
@@ -46,7 +47,7 @@ function refreshPanel()
 {
 	var user = firebase.auth().currentUser.displayName;
 
-	let today = new Date().format('d/m/Y h:i');
+	let today = new Date().format("d/m/Y h:i");
 
 	ref.child(`users/${user}/info`)
 		.update(
@@ -103,7 +104,7 @@ function refreshPanel()
 										<g>
 												<path d="M316.723,23.449c-4.765-2.795-10.892-1.197-13.686,3.566l-13.596,23.178c-2.794,4.764-1.198,10.891,3.566,13.685                           c1.59,0.933,3.331,1.376,5.05,1.376c3.432,0,6.773-1.768,8.636-4.942l13.596-23.178C323.083,32.37,321.486,26.243,316.723,23.449z                           " /> </g>
 								</g>
-						</svg>`
+						</svg>`;
 				}
 				else
 				{
@@ -148,7 +149,7 @@ function refreshPanel()
 										<path d="M502.417,396.236c-19.026-0.794-43.783-11.338-44.026-11.443c-2.881-1.24-6.175-1.058-8.898,0.493    c-2.726,1.55-4.566,4.288-4.973,7.396l-7.573,57.936c-4.461-2.472-9.635-4.204-15.295-4.944    c-8.924-1.168-18.019,0.301-25.608,4.131c-8.863,4.474-14.57,11.811-15.658,20.13c-1.088,8.319,2.542,16.877,9.958,23.479    c6.351,5.652,14.763,9.408,23.686,10.574c1.997,0.261,3.966,0.388,5.896,0.388c17.323,0,31.497-10.192,33.421-24.902v-0.001    c0.021-0.161,0.03-0.32,0.048-0.48c0.016-0.102,0.041-0.201,0.054-0.304l9.266-70.886c10.263,3.524,25.353,7.853,38.869,8.417    c5.531,0.217,10.178-4.057,10.408-9.574C512.222,401.126,507.935,396.466,502.417,396.236z M433.514,476.88    c-0.576,4.402-7.923,8.449-16.893,7.277c-4.842-0.633-9.694-2.757-12.98-5.682c-2.321-2.067-3.634-4.346-3.424-5.948    c0.209-1.602,2.063-3.466,4.838-4.867c3.046-1.537,6.877-2.366,10.702-2.366c1.107,0,2.215,0.069,3.303,0.211    C428.03,466.678,434.089,472.477,433.514,476.88z" />
 									</g>
 								</g>
-								</svg>`
+								</svg>`;
 				}
 				let event = `<div class="dashboard__event">
 							${eventIcon}
@@ -243,13 +244,13 @@ function refreshPanel()
 														</svg> ${childData.time} </div>
 										</div>
 								</div>
-						</div> `
-				$("#dashboard").append(event)
+						</div> `;
+				$("#dashboard").append(event);
 			});
 			if (eventNumber === 0)
 			{
-				let noEvents = `<div class="dashboard__noEvents">You don't have any events planned.</div>`
-				$("#dashboard").append(noEvents)
+				let noEvents = `<div class="dashboard__noEvents">You don"t have any events planned.</div>`
+				$("#dashboard").append(noEvents);
 			}
 		})
 }
@@ -258,22 +259,22 @@ function newEvent()
 {
 	if (document.getElementById("newEvent").style.display === "flex")
 	{
-		document.getElementById("newEvent").style.opacity = "0"
-		document.getElementById("bg").style.opacity = "0"
+		document.getElementById("newEvent").style.opacity = "0";
+		document.getElementById("bg").style.opacity = "0";
 		setTimeout(() =>
 		{
-			document.getElementById("newEvent").style.display = "none"
-			document.getElementById("bg").style.display = "none"
+			document.getElementById("newEvent").style.display = "none";
+			document.getElementById("bg").style.display = "none";
 		}, 500);
 	}
 	else
 	{
-		document.getElementById("newEvent").style.display = "flex"
-		document.getElementById("bg").style.display = "block"
+		document.getElementById("newEvent").style.display = "flex";
+		document.getElementById("bg").style.display = "block";
 		setTimeout(() =>
 		{
-			document.getElementById("newEvent").style.opacity = "1"
-			document.getElementById("bg").style.opacity = ".7"
+			document.getElementById("newEvent").style.opacity = "1";
+			document.getElementById("bg").style.opacity = ".7";
 		}, 200);
 	}
 }
@@ -295,8 +296,8 @@ function createEvent()
 		})
 		.then(() =>
 		{
-			document.getElementById("newEvent").style.display = "none"
-			document.getElementById("bg").style.display = "none"
+			document.getElementById("newEvent").style.display = "none";
+			document.getElementById("bg").style.display = "none";
 			refreshPanel();
 		})
 }
