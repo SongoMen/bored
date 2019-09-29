@@ -249,7 +249,7 @@ function refreshPanel()
 			});
 			if (eventNumber === 0)
 			{
-				let noEvents = `<div class="dashboard__noEvents">You don"t have any events planned.</div>`
+				let noEvents = `<div class="dashboard__noEvents">You don't have any events planned.</div>`
 				$("#dashboard").append(noEvents);
 			}
 		})
