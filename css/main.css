@@ -15,7 +15,7 @@ body{
     background: -o-linear-gradient(315deg, #29252e 0%,#16161d 100%);
     background: linear-gradient(135deg, #29252e 0%,#16161d 100%);
     font-family: Montserrat;
-    color:#eaf5ff!important;
+    color:#eaf5ff;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
@@ -23,8 +23,8 @@ body{
 }
 
 *{
-    -webkit-box-sizing: border-box!important;
-            box-sizing: border-box!important;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
 input:focus,
@@ -326,7 +326,7 @@ header li:nth-child(1):hover, header li:nth-child(2):hover{
     padding:10px 20px;
     font-weight: 900;
     border-radius: 5px;
-    color:#eaf5ff!important;
+    color:#eaf5ff;
     -webkit-transition: all .5s;
     -o-transition: all .5s;
     transition: all .5s;
@@ -412,7 +412,7 @@ header li:nth-child(1):hover, header li:nth-child(2):hover{
     width:90%;
 }
 input {
-    font-family: Montserrat!important;
+    font-family: Montserrat;
     margin-bottom:15px;
 }
 
@@ -523,8 +523,8 @@ ul {
 }
 
 .leftbar li:hover{
-    color:white!important;
-    fill:white!important;
+    color:white;
+    fill:white;
 }
 
 .leftbar li svg {
@@ -534,8 +534,8 @@ ul {
 }
 
 .active, .active svg{
-    color:white!important;
-    fill:white!important;
+    color:white;
+    fill:white;
 }
 
 .leftbar__user{
@@ -796,7 +796,7 @@ ul {
 }
 
 .newEvent__submit{
-    margin-top:0!important;
+    margin-top:0;
 }
 
 .newEvent__footer{
@@ -804,15 +804,15 @@ ul {
 }
   
 #newEvent__cancel, .cancel{
-    background-color: rgb(142, 155, 168)!important;
-    -webkit-box-shadow: 0 0px 0px 0 rgb(142, 155, 168)!important;
-            box-shadow: 0 0px 0px 0 rgb(142, 155, 168)!important;
+    background-color: rgb(142, 155, 168);
+    -webkit-box-shadow: 0 0px 0px 0 rgb(142, 155, 168);
+            box-shadow: 0 0px 0px 0 rgb(142, 155, 168);
     margin-top:10px;
 }
 
 #newEvent__cancel:hover, .cancel:hover{
-    -webkit-box-shadow: 0 0 15px 0 rgb(142, 155, 168)!important;
-            box-shadow: 0 0 15px 0 rgb(142, 155, 168)!important;
+    -webkit-box-shadow: 0 0 15px 0 rgb(142, 155, 168);
+            box-shadow: 0 0 15px 0 rgb(142, 155, 168);
 }
 
 label{
@@ -912,12 +912,12 @@ label{
 }
 
 .friends__invites{
-    background-color:#0E6BA8!important;
+    background-color:#0E6BA8;
 }
 
 .friends__invites:hover{
-    -webkit-box-shadow: 0 0 15px 0 #0E6BA8!important;
-            box-shadow: 0 0 15px 0 #0E6BA8!important;
+    -webkit-box-shadow: 0 0 15px 0 #0E6BA8;
+            box-shadow: 0 0 15px 0 #0E6BA8;
 }
 
 .friends__buttons,.requests__buttons{
@@ -934,7 +934,7 @@ label{
 }
 
 .friends__searchBar{
-    margin-bottom: 0!important;
+    margin-bottom: 0;
 }
 
 .friends__list{
@@ -968,8 +968,8 @@ label{
 }
 
 .friends__message{
-    padding:8px 30px!important;
-    margin-top:15px!important;
+    padding:8px 30px;
+    margin-top:15px;
 }
 
 .friends__fullList svg{
@@ -981,8 +981,8 @@ label{
 
 .friends__remove{
     cursor: pointer;
-    width:15px!important;
-    height: 15px!important;
+    width:15px;
+    height: 15px;
 }
 
 .friends__list svg{
@@ -1055,13 +1055,13 @@ label{
 }
 
 .accept,.decline{
-    -webkit-box-shadow: none!important;
-            box-shadow: none!important;
+    -webkit-box-shadow: none;
+            box-shadow: none;
     font-weight: bold;
 }
 
 .accept{
-    background-color:#32FCA1!important;
+    background-color:#32FCA1;
 }
 
 .decline{
@@ -1069,13 +1069,13 @@ label{
 }
 
 .accept:hover{
-    -webkit-box-shadow: 0px 0px 10px 0px #32FCA1!important;
-            box-shadow: 0px 0px 10px 0px #32FCA1!important;
+    -webkit-box-shadow: 0px 0px 10px 0px #32FCA1;
+            box-shadow: 0px 0px 10px 0px #32FCA1;
 }
 
 .decline:hover{
-    -webkit-box-shadow: 0px 0px 10px 0px #ff5e57!important;
-            box-shadow: 0px 0px 10px 0px #ff5e57!important;
+    -webkit-box-shadow: 0px 0px 10px 0px #ff5e57;
+            box-shadow: 0px 0px 10px 0px #ff5e57;
 }
 
 
@@ -1111,7 +1111,7 @@ label{
         margin-top:0
     }
     .newEvent__submit{
-        font-size:11px!important;
+        font-size:11px;
     }
     button[type=button]{
         padding: 10px 15px;
@@ -1123,7 +1123,7 @@ label{
         display: none;
     }
     .panel,.friends,.profile{
-        width:100%!important;
+        width:100%;
         padding:20px;
     }
     .hamburger{
@@ -1152,7 +1152,7 @@ label{
         display: none;
     }
     .panel{
-        width:100%!important;
+        width:100%;
     }
     .dashboard__event{
         min-width: 300px;
