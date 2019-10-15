@@ -1,73 +1,63 @@
 const ref = firebase.database().ref();
 
-document.getElementById("newEvent__submit").addEventListener("click", createEvent);
+document
+  .getElementById("newEvent__submit")
+  .addEventListener("click", createEvent);
 document.getElementById("topbar__add").addEventListener("click", newEvent);
-document.getElementById("newEvent__cancel").addEventListener("click", function ()
-{
-	document.getElementById("newEvent").style.opacity = "0";
-	document.getElementById("bg").style.opacity = "0";
-	setTimeout(() =>
-	{
-		document.getElementById("newEvent").style.display = "none";
-		document.getElementById("bg").style.display = "none";
-	}, 500);
-})
+document
+  .getElementById("newEvent__cancel")
+  .addEventListener("click", function() {
+    document.getElementById("newEvent").style.opacity = "0";
+    document.getElementById("bg").style.opacity = "0";
+    setTimeout(() => {
+      document.getElementById("newEvent").style.display = "none";
+      document.getElementById("bg").style.display = "none";
+    }, 500);
+  });
 
 $("#newEvent__hours").inputmask("hh:mm");
-$("#newEvent__date").inputmask(
-{
-	alias: "date",
-	"placeholder": "__/__/____"
+$("#newEvent__date").inputmask({
+  alias: "date",
+  placeholder: "__/__/____"
 });
-firebase.auth().onAuthStateChanged(function (user)
-{
-	var user = firebase.auth().currentUser.displayName;
+firebase.auth().onAuthStateChanged(function(user) {
+  var user = firebase.auth().currentUser.displayName;
 
-	if (user)
-	{
-		document.getElementById("leftbar__username").innerHTML = user;
-		document.getElementById("leftbar__username1").innerHTML = user;
-		setTimeout(() =>
-		{
-			document.getElementById("preloader").style.display = "none";
-		}, 1000);
-		setTimeout(() =>
-		{
-			refreshPanel();
-		}, 800);
-	}
-	else
-	{
-		window.location.href = "login.html";
-	}
-
+  if (user) {
+    document.getElementById("leftbar__username").innerHTML = user;
+    document.getElementById("leftbar__username1").innerHTML = user;
+    setTimeout(() => {
+      document.getElementById("preloader").style.display = "none";
+    }, 1000);
+    setTimeout(() => {
+      refreshPanel();
+    }, 800);
+  } else {
+    window.location.href = "login.html";
+  };
 });
 
-function refreshPanel()
-{
-	var user = firebase.auth().currentUser.displayName;
+function refreshPanel() {
+  var user = firebase.auth().currentUser.displayName;
 
-	let today = new Date().format("d/m/Y h:i");
+  let today = new Date().format("d/m/Y h:i");
 
-	ref.child(`users/${user}/info`)
-		.update(
-		{
-			lastOnline: today
-		})
+  ref.child(`users/${user}/info`).update({
+    lastOnline: today
+  });
 
-	document.getElementById("dashboard").innerHTML = "";
-	let eventNumber = 0;
-	ref.child(`users/${user}/events`).once("value")
-		.then(function (snapshot)
-		{
-			snapshot.forEach(function (childSnapshot)
-			{
-				eventNumber++;
-				let childData = childSnapshot.val();
-				let eventIcon;
-				if (childData.type === "Meeting")
-				{
-					eventIcon = `<svg class="dashboard__type" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512.002 512.002" style="enable-background:new 0 0 512.002 512.002;" xml:space="preserve">
+  document.getElementById("dashboard").innerHTML = "";
+  let eventNumber = 0;
+  ref
+    .child(`users/${user}/events`)
+    .once("value")
+    .then(function(snapshot) {
+      snapshot.forEach(function(childSnapshot) {
+        eventNumber++;
+        let childData = childSnapshot.val();
+        let eventIcon;
+        if (childData.type === "Meeting") {
+          eventIcon = `<svg class="dashboard__type" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512.002 512.002" style="enable-background:new 0 0 512.002 512.002;" xml:space="preserve">
 								<g>
 										<g>
 												<path d="M228.242,108.792l-48.176-12.909c-5.266-1.411-11.173-0.242-15.416,3.05c-3.227,2.502-5.236,6.047-5.673,9.917                           l-5.337,19.919c-1.573,3.644-1.586,7.801,0.006,11.644c0.524,1.265,1.209,2.463,2.025,3.573                           c-5.1,10.618-10.914,23.713-17.017,38.282c-0.007,0.017-0.014,0.033-0.021,0.049c-5.331,12.728-10.879,26.572-16.359,40.867                           c-18.682,5.068-42.505,26.934-49.436,52.794L26.98,447.128c-4.413,16.473,6.424,33.74,24.157,38.491l46.947,12.58                           c0,0,0.002,0,0.002,0.001l46.945,12.579c3.054,0.818,6.156,1.224,9.229,1.224c5.351,0,10.613-1.23,15.372-3.648                           c7.852-3.99,13.38-10.678,15.565-18.832l6.308-23.543c0.001-0.003,0.003-0.007,0.003-0.01c0.001-0.003,0.001-0.006,0.002-0.009                           l39.546-147.587c6.93-25.861-2.77-56.708-16.414-70.439c3.437-21.645,6.295-42.565,8.314-60.632                           c0.006-0.052,0.013-0.104,0.018-0.157c1.01-9.053,1.807-17.38,2.362-24.725c4.329-2.121,7.763-6.016,9.107-11.027l5.832-21.763                           C242.7,120.568,237.302,111.22,228.242,108.792z M165.878,484.344c-0.697,2.599-2.581,4.794-5.307,6.179                           c-3.085,1.567-6.766,1.9-10.365,0.936l-46.944-12.578c-0.001,0-0.001-0.001-0.002-0.001L56.313,466.3                           c-6.961-1.865-11.547-8.275-10.015-13.997l3.723-13.895l119.58,32.042L165.878,484.344z M174.778,451.132L55.197,419.09                           L89.57,290.813l119.58,32.042L174.778,451.132z M213.276,303.255l-117.482-31.48c8.671-17.117,26.267-29.503,34.042-29.699                           c4.061-0.102,7.658-2.652,9.099-6.451c5.197-13.704,10.479-27.05,15.591-39.444h47.256c-1.648,13.427-3.697,28.106-6.052,43.269                           l-2.445-0.655c-5.337-1.43-10.818,1.736-12.247,7.071c-1.429,5.335,1.736,10.818,7.071,12.247l11.479,3.076                           C206.103,266.396,214.278,284.986,213.276,303.255z M215.733,143.945c-0.079,0.001-0.157,0.01-0.236,0.013                           c-0.074,0.002-0.146,0.007-0.219,0.012c-0.243,0.015-0.484,0.038-0.723,0.07c-0.083,0.011-0.165,0.021-0.247,0.034                           c-0.239,0.038-0.475,0.086-0.71,0.141c-0.068,0.016-0.138,0.028-0.206,0.046c-0.287,0.074-0.57,0.159-0.848,0.258                           c-0.09,0.032-0.177,0.071-0.267,0.105c-0.187,0.073-0.373,0.148-0.555,0.231c-0.113,0.052-0.223,0.108-0.333,0.164                           c-0.157,0.079-0.311,0.161-0.464,0.248c-0.107,0.061-0.214,0.124-0.319,0.189c-0.159,0.098-0.313,0.203-0.466,0.31                           c-0.088,0.062-0.177,0.121-0.263,0.186c-0.203,0.152-0.399,0.312-0.59,0.479c-0.03,0.026-0.062,0.049-0.091,0.076                           c-0.225,0.202-0.439,0.415-0.646,0.636c-0.043,0.046-0.082,0.095-0.124,0.142c-0.157,0.175-0.309,0.355-0.454,0.542                           c-0.059,0.076-0.115,0.155-0.172,0.233c-0.119,0.162-0.233,0.328-0.342,0.498c-0.061,0.095-0.121,0.192-0.179,0.289                           c-0.094,0.158-0.182,0.321-0.268,0.485c-0.058,0.111-0.116,0.221-0.17,0.334c-0.075,0.16-0.143,0.324-0.21,0.488                           c-0.05,0.121-0.104,0.24-0.148,0.363c-0.088,0.242-0.165,0.49-0.235,0.742c-0.083,0.299-0.15,0.604-0.206,0.913                           c-0.012,0.065-0.03,0.13-0.041,0.195c-0.007,0.042-0.008,0.087-0.015,0.131c-0.044,0.302-0.079,0.604-0.096,0.905                           c-0.364,6.547-0.996,14.238-1.859,22.779h-41.044c5.17-11.881,9.983-22.289,14.13-30.493c0.131-0.26,0.248-0.53,0.357-0.804                           c0.019-0.049,0.045-0.097,0.064-0.146c0.02-0.054,0.034-0.111,0.054-0.165c0.11-0.304,0.206-0.61,0.286-0.919                           c0.065-0.253,0.123-0.507,0.167-0.76c0.022-0.124,0.034-0.248,0.051-0.372c0.025-0.184,0.05-0.367,0.064-0.55                           c0.01-0.117,0.014-0.234,0.019-0.351c0.009-0.196,0.014-0.391,0.011-0.585c-0.002-0.104-0.004-0.208-0.009-0.311                           c-0.009-0.216-0.027-0.43-0.05-0.643c-0.009-0.083-0.017-0.166-0.028-0.249c-0.034-0.255-0.079-0.508-0.133-0.759                           c-0.009-0.042-0.015-0.083-0.024-0.125c-0.069-0.302-0.151-0.6-0.247-0.893c-0.006-0.018-0.013-0.035-0.019-0.052                           c-0.087-0.26-0.186-0.517-0.294-0.768c-0.04-0.092-0.084-0.182-0.126-0.273c-0.081-0.175-0.165-0.348-0.257-0.518                           c-0.057-0.107-0.117-0.212-0.178-0.317c-0.088-0.151-0.181-0.299-0.277-0.446c-0.069-0.106-0.138-0.212-0.211-0.316                           c-0.11-0.155-0.228-0.304-0.347-0.453c-0.066-0.083-0.128-0.169-0.198-0.25c-0.188-0.22-0.387-0.432-0.594-0.635                           c-0.063-0.062-0.13-0.118-0.195-0.178c-0.162-0.151-0.328-0.298-0.501-0.439c-0.074-0.06-0.151-0.118-0.227-0.176                           c-0.181-0.139-0.367-0.271-0.559-0.398c-0.069-0.045-0.137-0.091-0.208-0.135c-0.063-0.04-0.124-0.085-0.188-0.123l4.454-16.606                           l42.409,11.363L215.733,143.945z" /> </g>
@@ -105,10 +95,8 @@ function refreshPanel()
 												<path d="M316.723,23.449c-4.765-2.795-10.892-1.197-13.686,3.566l-13.596,23.178c-2.794,4.764-1.198,10.891,3.566,13.685                           c1.59,0.933,3.331,1.376,5.05,1.376c3.432,0,6.773-1.768,8.636-4.942l13.596-23.178C323.083,32.37,321.486,26.243,316.723,23.449z                           " /> </g>
 								</g>
 						</svg>`;
-				}
-				else
-				{
-					eventIcon = `<svg class="dashboard__type" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve">
+        } else {
+          eventIcon = `<svg class="dashboard__type" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve">
 								<g>
 									<g>
 										<path d="M254.888,49.549c-5.523,0-10,4.477-10,10v73.185c0,5.523,4.477,10,10,10c5.522,0,10-4.477,10-10V59.549    C264.888,54.026,260.41,49.549,254.888,49.549z" />
@@ -150,8 +138,8 @@ function refreshPanel()
 									</g>
 								</g>
 								</svg>`;
-				}
-				let event = `<div class="dashboard__event">
+        }
+        let event = `<div class="dashboard__event">
 							${eventIcon}
 								<p class="dashboard__eventName">${childData.name}</p>
 								<div class="dashboard__info">
@@ -245,59 +233,50 @@ function refreshPanel()
 										</div>
 								</div>
 						</div> `;
-				$("#dashboard").append(event);
-			});
-			if (eventNumber === 0)
-			{
-				let noEvents = `<div class="dashboard__noEvents">You don't have any events planned.</div>`
-				$("#dashboard").append(noEvents);
-			}
-		})
-}
+        $("#dashboard").append(event);
+      });
+      if (eventNumber === 0) {
+        let noEvents = `<div class="dashboard__noEvents">You don't have any events planned.</div>`;
+        $("#dashboard").append(noEvents);
+      }
+    });
+};
 
-function newEvent()
-{
-	if (document.getElementById("newEvent").style.display === "flex")
-	{
-		document.getElementById("newEvent").style.opacity = "0";
-		document.getElementById("bg").style.opacity = "0";
-		setTimeout(() =>
-		{
-			document.getElementById("newEvent").style.display = "none";
-			document.getElementById("bg").style.display = "none";
-		}, 500);
-	}
-	else
-	{
-		document.getElementById("newEvent").style.display = "flex";
-		document.getElementById("bg").style.display = "block";
-		setTimeout(() =>
-		{
-			document.getElementById("newEvent").style.opacity = "1";
-			document.getElementById("bg").style.opacity = ".7";
-		}, 200);
-	}
-}
+function newEvent() {
+  if (document.getElementById("newEvent").style.display === "flex") {
+    document.getElementById("newEvent").style.opacity = "0";
+    document.getElementById("bg").style.opacity = "0";
+    setTimeout(() => {
+      document.getElementById("newEvent").style.display = "none";
+      document.getElementById("bg").style.display = "none";
+    }, 500);
+  } else {
+    document.getElementById("newEvent").style.display = "flex";
+    document.getElementById("bg").style.display = "block";
+    setTimeout(() => {
+      document.getElementById("newEvent").style.opacity = "1";
+      document.getElementById("bg").style.opacity = ".7";
+    }, 200);
+  };
+};
 
-function createEvent()
-{
-	let eventName = document.getElementById("newEvent__nameInput").value;
-	let eventDate = document.getElementById("newEvent__date").value;
-	let eventTime = document.getElementById("newEvent__hours").value;
-	let type = document.getElementById("slct").value;
-	var user = firebase.auth().currentUser.displayName;
-	ref.child(`users/${user}/events/${eventName}`)
-		.set(
-		{
-			name: eventName,
-			date: eventDate,
-			time: eventTime,
-			type: type
-		})
-		.then(() =>
-		{
-			document.getElementById("newEvent").style.display = "none";
-			document.getElementById("bg").style.display = "none";
-			refreshPanel();
-		})
-}
+function createEvent() {
+  let eventName = document.getElementById("newEvent__nameInput").value;
+  let eventDate = document.getElementById("newEvent__date").value;
+  let eventTime = document.getElementById("newEvent__hours").value;
+  let type = document.getElementById("slct").value;
+  var user = firebase.auth().currentUser.displayName;
+  ref
+    .child(`users/${user}/events/${eventName}`)
+    .set({
+      name: eventName,
+      date: eventDate,
+      time: eventTime,
+      type: type
+    })
+    .then(() => {
+      document.getElementById("newEvent").style.display = "none";
+      document.getElementById("bg").style.display = "none";
+      refreshPanel();
+    });
+};

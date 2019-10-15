@@ -47,14 +47,14 @@ function sendInfo(){
                     let yyyy = today.getFullYear();
                 
                     if (dd < 10) {
-                    dd = '0' + dd;
+                    dd = "0" + dd;
                     }
                 
                     if (mm < 10) {
-                    mm = '0' + mm;
+                    mm = "0" + mm;
                     }
                 
-                    today = dd + '/' + mm + '/' + yyyy;
+                    today = dd + "/" + mm + "/" + yyyy;
                     ref.child(`users/${username}/info`)
                     .set({
                       username:username,
