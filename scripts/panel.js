@@ -272,7 +272,7 @@ function createEvent() {
       name: eventName,
       date: eventDate,
       time: eventTime,
-      type: type
+      type
     })
     .then(() => {
       document.getElementById("newEvent").style.display = "none";

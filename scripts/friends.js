@@ -108,7 +108,7 @@ function acceptOrDecline(name) {
   var user = firebase.auth().currentUser.displayName;
   let name1 = name.className.split(" ");
   let username = name1[1];
-  if (name1[0] == "accept") {
+  if (name1[0] === "accept") {
     ref
       .child(`users/${user}/recivedRequests/${username}`)
       .remove()
@@ -206,7 +206,7 @@ function getFriends() {
           });
       });
       if (friendsNumber === 0) {
-        let noFriends = `<div class="friends__noFriends">You don"t have anyone on your friend list.</div>`;
+        let noFriends = '<div class="friends__noFriends">You don"t have anyone on your friend list.</div>';
         $("#friends__fullList").append(noFriends);
       }
     });
