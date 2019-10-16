@@ -34,7 +34,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     }, 800);
   } else {
     window.location.href = "login.html";
-  };
+  }
 });
 
 function refreshPanel() {
@@ -240,7 +240,7 @@ function refreshPanel() {
         $("#dashboard").append(noEvents);
       }
     });
-};
+}
 
 function newEvent() {
   if (document.getElementById("newEvent").style.display === "flex") {
@@ -257,8 +257,8 @@ function newEvent() {
       document.getElementById("newEvent").style.opacity = "1";
       document.getElementById("bg").style.opacity = ".7";
     }, 200);
-  };
-};
+  }
+}
 
 function createEvent() {
   let eventName = document.getElementById("newEvent__nameInput").value;
@@ -279,4 +279,4 @@ function createEvent() {
       document.getElementById("bg").style.display = "none";
       refreshPanel();
     });
-};
+}

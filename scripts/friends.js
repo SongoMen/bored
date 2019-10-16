@@ -81,26 +81,28 @@ function getRequests() {
     bg.style.opacity = ".7";
   }, 200);
   for (let i = 0; i < friends.length; i++) {
-    appendDiv = `<div class="requests__user" id=${friends[i]}>
-			<h3>${friends[i]}</h3>
+    appendDiv = `<div class="requests__user" id=${friends[parseInt(i)]}>
+			<h3>${friends[parseInt(i)]}</h3>
 			<div class="requests__buttons">
-			<button onClick = "acceptOrDecline(this)" class="accept ${friends[i]}" type="button">Accept</button>
-			<button onClick = "acceptOrDecline(this)" class="decline ${friends[i]}" type="button">Decline</button>
+			<button onClick = "acceptOrDecline(this)" class="accept ${
+        friends[parseInt(i)]
+      }" type="button">Accept</button>
+			<button onClick = "acceptOrDecline(this)" class="decline ${
+        friends[parseInt(i)]
+      }" type="button">Decline</button>
 			</div>
 			</div>`;
     $("#requests__list").append(appendDiv);
   }
-};
+}
 
 function removeFriends(name) {
   var user = firebase.auth().currentUser.displayName;
   let name1 = name.animVal.split(" ");
-
-  console.log(name);
   ref.child(`users/${user}/friends/${name1[1]}`).remove();
   ref.child(`users/${name1[1]}/friends/${user}`).remove();
   getFriends();
-};
+}
 
 function acceptOrDecline(name) {
   var user = firebase.auth().currentUser.displayName;
@@ -126,19 +128,19 @@ function acceptOrDecline(name) {
   $("#" + name1[1]).remove();
   getFriends();
   checkRequests();
-};
+}
 
 function friendRequest(cl) {
   let user = firebase.auth().currentUser.displayName;
   let username = cl.className;
   ref.child(`users/${user}/sentRequests/${username}`).update({
-    username: username
+    username
   });
   ref.child(`users/${username}/recivedRequests/${user}`).update({
-    user: user
+    user
   });
   $("." + username).html("Request sent");
-};
+}
 
 function checkRequests() {
   let user = firebase.auth().currentUser.displayName;
@@ -171,7 +173,7 @@ function checkRequests() {
       }
       requests = 0;
     });
-};
+}
 
 function getFriends() {
   document.getElementById("friends__fullList").innerHTML = "";
@@ -208,7 +210,7 @@ function getFriends() {
         $("#friends__fullList").append(noFriends);
       }
     });
-};
+}
 
 function addFriends() {
   let user = firebase.auth().currentUser.displayName;
@@ -217,7 +219,7 @@ function addFriends() {
   let friendsNumber = 0;
   let friends;
   ref
-    .child(`users/`)
+    .child("users/")
     .once("value")
     .then(function(snapshot) {
       snapshot.forEach(function(childSnapshot) {
@@ -243,4 +245,4 @@ function addFriends() {
       }
       friendsNumber = 0;
     });
-};
+}

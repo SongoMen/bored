@@ -18,11 +18,7 @@ function sendInfo() {
   let password = document.getElementById("password").value;
 
   ref.child(`users/${username}`).once("value", snapshot => {
-    if (
-      snapshot.exists() ||
-      username.length < 3 ||
-      format.test(username)
-    ) {
+    if (snapshot.exists() || username.length < 3 || format.test(username)) {
       document.getElementById("errorMsg").style.color = "white";
       if (username.length < 3) {
         document.getElementById("errorMsg").innerHTML =
@@ -62,9 +58,9 @@ function sendInfo() {
 
           today = dd + "/" + mm + "/" + yyyy;
           ref.child(`users/${username}/info`).set({
-            username: username,
-            email: email,
-            password: password,
+            username,
+            email,
+            password,
             createdDate: today
           });
           document.getElementById("errorMsg").style.color = "green";
@@ -78,5 +74,5 @@ function sendInfo() {
         });
     }
   });
-};
+}
 document.getElementById("submit").addEventListener("click", sendInfo);
