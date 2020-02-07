@@ -744,7 +744,7 @@ ul {
      -webkit-box-direction: normal;
          -ms-flex-direction: column;
              flex-direction: column;
-     width:65%;
+     width:50%;
      height: 70%;
      background-color:#16161d;
      border-radius: 10px;
